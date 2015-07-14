@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
     s.homepage = 'https://github.com/tispr/tispr-card-stack'
 
-    s.authors            = { "Andrei Pitsko" => "andrei.pitsko@gmail.com", "Tispr Contributors" }
+    s.authors            = { "Andrei Pitsko" => "andrei.pitsko@gmail.com", "TISPR Engineering Team" }
     s.social_media_url   = "http://twitter.com/tispr"
 
     s.source = { :git => 'https://github.com/tispr/tispr-card-stack.git', :tag => s.version }
