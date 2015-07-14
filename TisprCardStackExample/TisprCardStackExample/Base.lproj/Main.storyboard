@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qtK-Vs-bQo">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="tEc-MA-y9E">
+            <objects>
+                <navigationController id="qtK-Vs-bQo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cDi-tF-vQl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dNJ-yq-xIk" kind="relationship" relationship="rootViewController" id="Zuc-D7-JVK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TZz-kD-CWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-585" y="446"/>
+        </scene>
+        <!--Tispr Card Stack Demo View Controller-->
+        <scene sceneID="Sb1-rj-0Ty">
+            <objects>
+                <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="dNJ-yq-xIk" customClass="TisprCardStackDemoViewController" customModule="TisprCardStackExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TO4-Nh-bXq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewLayout key="collectionViewLayout" id="k6v-KU-oNw" customClass="TisprCardStackViewLayout" customModule="TisprCardStack"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellIdentifier" id="nGw-4o-lEB" customClass="TisprCardStackDemoViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPI-Y1-54q">
+                                            <rect key="frame" x="92.5" y="131.5" width="76.5" height="38.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="qPI-Y1-54q" secondAttribute="centerX" constant="9.5" id="Dzh-bD-8lJ"/>
+                                    <constraint firstItem="qPI-Y1-54q" firstAttribute="top" secondItem="nGw-4o-lEB" secondAttribute="topMargin" constant="132" id="kvd-ZL-tCY"/>
+                                    <constraint firstAttribute="centerY" secondItem="qPI-Y1-54q" secondAttribute="centerY" constant="39.5" id="sdr-3X-dx8"/>
+                                </constraints>
+                                <size key="customSize" width="280" height="380"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="kvd-ZL-tCY"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="text" destination="qPI-Y1-54q" id="5eb-wk-sxq"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="dNJ-yq-xIk" id="eRw-JY-oSo"/>
+                            <outlet property="delegate" destination="dNJ-yq-xIk" id="Mo8-sF-a9N"/>
+                        </connections>
+                    </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="4PD-kr-wHl">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="UP" id="1KQ-6r-8FM">
+                            <connections>
+                                <action selector="moveUP:" destination="dNJ-yq-xIk" id="swO-Jv-17e"/>
+                            </connections>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xuG-3c-L22">
+                            <rect key="frame" x="256" y="7" width="88" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="New Card">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="addNewCards:" destination="dNJ-yq-xIk" eventType="touchUpInside" id="Yly-bq-xwf"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" title="Down" id="jRK-fe-Wro">
+                            <connections>
+                                <action selector="moveCardDown:" destination="dNJ-yq-xIk" id="XqZ-tc-hE8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mW3-jp-k3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="133" y="446"/>
+        </scene>
+    </scenes>
+</document>

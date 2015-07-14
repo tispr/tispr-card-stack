@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9069B427-3336-41C7-ABA0-5AA5455E504C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TisprCardStack</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C3845215B04D5F8C8F2D627E986A999C0C970761</key>
+		<string>https://github.com/tispr/card-stack.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TisprCardStack/TisprCardStack.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C3845215B04D5F8C8F2D627E986A999C0C970761</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/tispr/card-stack.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C3845215B04D5F8C8F2D627E986A999C0C970761</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C3845215B04D5F8C8F2D627E986A999C0C970761</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Card-stack</string>
+		</dict>
+	</array>
+</dict>
+</plist>
