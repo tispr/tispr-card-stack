@@ -10,14 +10,14 @@ Pod::Spec.new do |s|
 
     s.homepage = 'https://github.com/tispr/tispr-card-stack'
 
-    s.authors            = { "Andrei Pitsko" => "andrei.pitsko@gmail.com", "TISPR Engineering Team" }
+    s.authors            = { "Andrei Pitsko" => "andrei.pitsko@gmail.com", "TISPR Engineering Team" => "se@tispr.com" }
     s.social_media_url   = "http://twitter.com/tispr"
 
     s.source = { :git => 'https://github.com/tispr/tispr-card-stack.git', :tag => s.version }
 
     s.ios.deployment_target = '8.0'
 
-    s.source_files  = "TisprCardStack/*.swift"
+    s.source_files  = "TisprCardStack/TisprCardStack/*.swift"
     
     s.requires_arc = true
     
