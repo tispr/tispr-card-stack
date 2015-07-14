@@ -79,7 +79,7 @@ For more detail, see the sample project.
 Contact
 -------
 
-andrei.pitsko@gmail.com
+andrei.pitsko@tispr.com
 
 License
 -------
