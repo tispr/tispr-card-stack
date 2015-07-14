@@ -24,6 +24,13 @@
 			remoteGlobalIDString = 88E6A2DA1B4D93F300912452;
 			remoteInfo = TisprCardStack;
 		};
+		88BC7FE51B55D26100DEA74F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8850ED6D1B543C99007333D6 /* TisprCardStack.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E6A2D91B4D93F300912452;
+			remoteInfo = TisprCardStack;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -116,6 +123,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				88BC7FE61B55D26100DEA74F /* PBXTargetDependency */,
 			);
 			name = TisprCardStackExample;
 			productName = TisperCardStackExample;
@@ -196,6 +204,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88BC7FE61B55D26100DEA74F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TisprCardStack;
+			targetProxy = 88BC7FE51B55D26100DEA74F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8850ED5E1B543C8D007333D6 /* LaunchScreen.xib */ = {
