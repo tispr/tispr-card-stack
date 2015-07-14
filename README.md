@@ -38,7 +38,7 @@ Usage
         setCardSize(size)
   ```
 
-3. then specify the number of cards,
+3. then specify count of cards,
   ```swift
   func numberOfCards() -> Int {}
   ```
