@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
     s.name = 'TisprCardStack'
     s.version = '0.1.0'
-    s.summary = 'Library that allows to have cards UI, like Tinder and Potluck'
+    s.summary = 'Library that allows to have cards UI with two stacks'
 
     s.description  = 'Library that allows to have cards UI, like Tinder and Potluck. it is based on CollectionView. Works on iOS 8'
 
@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
 
     s.homepage = 'https://github.com/Akkyie/AKPickerView-Swift'
 
-    s.authors            = { "Andrei Pitsko" => "andrei.pitsko@gmail.com" }
-    s.social_media_url   = "http://twitter.com/tisper"
+    s.authors            = { "Andrei Pitsko" => "andrei.pitsko@gmail.com", "Tispr Contributors" }
+    s.social_media_url   = "http://twitter.com/tispr"
 
-    s.source = { :git => 'https://github.com/tispr/card-stack.git', :tag => s.version }
+    s.source = { :git => 'https://github.com/tispr/tispr-card-stack.git', :tag => s.version }
 
     s.ios.deployment_target = '8.0'
 
