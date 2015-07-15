@@ -19,6 +19,7 @@ under the License.
 //  TisprCardStackViewCell
 //
 //  Created by Andrei Pitsko on 07/12/15.
+//  Copyright (c) 2015 BuddyHopp Inc. All rights reserved.
 //
 
 import UIKit

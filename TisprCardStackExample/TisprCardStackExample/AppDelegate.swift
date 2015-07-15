@@ -20,6 +20,7 @@ under the License.
 //  CardStack
 //
 //  Created by Emanuele Rudel on 04/12/14.
+//  Copyright (c) 2015 BuddyHopp Inc. All rights reserved.
 //
 
 import UIKit

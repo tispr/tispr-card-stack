@@ -20,6 +20,7 @@ under the License.
 //  TisprCardStack
 //
 //  Created by Andrei Pitsko on 7/8/15.
+//  Copyright (c) 2015 BuddyHopp Inc. All rights reserved.
 //
 
 import TisprCardStack
