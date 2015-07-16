@@ -4,12 +4,13 @@ TisprCardStack
 
 <img src="./Screenshot_main.gif" width="200" alt="Screenshot" />
 
-Library that allows to have  cards UI (like tinder)
+The tispr  left/right feature. Cards UI
 
+Ever wanted to know how to code the UI for the swipe left/right feature?
+	•	in Swift
+	•	for iOS8
 
-Works on iOS 8.
-
-Installation
+Installation: With tools
 ------------
 
 ###[CocoaPods](http://cocoapods.org/):
@@ -24,10 +25,10 @@ import TisprCardStack
 
 
 
-###Manual Install
+###Installation: Manual
 Add `TisprCardStackViewCell.swift`,`TisprCardStackViewController.swift`, `TisprCardStackViewLayout.swift` into your Xcode project.
 
-Usage
+Usage start
 -----
 1. Create controller 'TisprCardStackViewController' with 'TisprCardStackViewLayout' collectionViewLayout
 
@@ -48,22 +49,22 @@ Usage
   card(collectionView: UICollectionView, cardForItemAtIndexPath indexPath: NSIndexPath) -> TisprCardStackViewCell {}
   ```
 
-
+Additional features/options
 -----	
-1. You can animated add new card calling method:
+1. Adding a new card: How to call the animation:
 
   ```swift
 func newCardWasAdded()
   ```
 
-1. You can configure card stacks by methods:
+1. How to configure the amount of visible cards in each stack (top and bottom):
   ```swift
         layout.topStackMaximumSize = 4
         layout.bottomStackMaximumSize = 30
         layout.bottomStackCardHeight = 45
   ```
 
-1. You can change card position from code by calling methods:
+1. Changing card position: How to call the movement of a card from the top to the bottom stack and vice versa:
   ```swift
         moveCardUp()
         moveCardDown()
