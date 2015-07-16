@@ -4,7 +4,7 @@ TisprCardStack
 
 <img src="./Screenshot_main.gif" width="200" alt="Screenshot" />
 
-The tispr swift left/right feature in Swift. Cards UI
+The tispr  left/right feature. Cards UI
 
 Ever wanted to know how to code the UI for the swipe left/right feature?
 	•	in Swift
