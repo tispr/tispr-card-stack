@@ -155,11 +155,14 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         
         if (indexPath.item >= index) {
             result = layoutAttributesForTopStackItemWithInitialAttributes(result)
+            //we have to hide invisible cards in top stask due perfomance issues due shadows
+            result.hidden = (result.indexPath.item >= index + topStackMaximumSize)
         } else {
             result = layoutAttributesForBottomStackItemWithInitialAttributes(result)
+            //we have to hide invisible cards in bottom stask due perfomance issues due shadows
+            result.hidden = (result.indexPath.item < (index - bottomStackMaximumSize))
         }
-        //we have to hide invisible cards in top stask due perfomance issues due shadows
-        result.hidden = (result.indexPath.item >= index + topStackMaximumSize)
+        
         
         if indexPath.item == draggedCellPath?.item  {
             //workaround for zIndex
@@ -170,7 +173,6 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         
         return result
     }
-    
     // MARK: - Implementation
     
     private func indexPathsForElementsInRect(rect: CGRect) -> [NSIndexPath] {

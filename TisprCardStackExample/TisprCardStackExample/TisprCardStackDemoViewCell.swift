@@ -36,10 +36,9 @@ class TisprCardStackDemoViewCell: TisprCardStackViewCell {
         layer.cornerRadius = 10
         clipsToBounds = false
         
-        /// FIXME: Use these properties later on for a more customizable layout
         layer.masksToBounds = false;
         layer.shadowOpacity = 0.3;
-        layer.shadowRadius = 3.0;
+        layer.shadowRadius = 10.0;
         layer.shadowOffset = CGSizeZero;
         layer.shadowPath = UIBezierPath(rect: bounds).CGPath
         layer.shouldRasterize = true
