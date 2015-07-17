@@ -29,20 +29,39 @@ import TisprCardStack
 class TisprCardStackDemoViewCell: TisprCardStackViewCell {
     
     @IBOutlet weak var text: UILabel!
+    @IBOutlet weak var  voteSmile: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        layer.cornerRadius = 10
+        layer.cornerRadius = 12
         clipsToBounds = false
         
-        layer.masksToBounds = false;
-        layer.shadowOpacity = 0.3;
-        layer.shadowRadius = 10.0;
-        layer.shadowOffset = CGSizeZero;
-        layer.shadowPath = UIBezierPath(rect: bounds).CGPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = UIScreen.mainScreen().scale
-
     }
+    
+    override var center: CGPoint {
+        didSet {
+            updateSmileVote()
+        }
+    }
+    
+    override internal func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes!) {
+        super.applyLayoutAttributes(layoutAttributes)
+        updateSmileVote()
+    }
+    
+    func updateSmileVote() {
+        let rotation = atan2(transform.b, transform.a)
+        if rotation == 0 {
+            voteSmile.hidden = true
+        } else {
+            voteSmile.hidden = false
+            
+            let voteSmileImageName = (rotation > 0) ? "smile_face" : "rotten_face"
+            voteSmile.image = UIImage(named: voteSmileImageName)
+            
+        }
+    }
+
+
 }
