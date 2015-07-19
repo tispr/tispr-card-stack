@@ -51,16 +51,20 @@ class TisprCardStackDemoViewCell: TisprCardStackViewCell {
     }
     
     func updateSmileVote() {
-        let rotation = atan2(transform.b, transform.a)
-        if rotation == 0 {
-            voteSmile.hidden = true
-        } else {
-            voteSmile.hidden = false
-            
-            let voteSmileImageName = (rotation > 0) ? "smile_face" : "rotten_face"
-            voteSmile.image = UIImage(named: voteSmileImageName)
-            
+        let rotation = atan2(transform.b, transform.a) * 100
+        var smileImageName = "smile_neutral"
+        
+        if rotation > 15 {
+            smileImageName = "smile_face_2"
+        } else if rotation > 0 {
+            smileImageName = "smile_face_1"
+        } else if rotation < -15 {
+            smileImageName = "smile_rotten_2"
+        } else if rotation < 0 {
+            smileImageName = "smile_rotten_1"
         }
+        
+        voteSmile.image = UIImage(named: smileImageName)
     }
 
 
