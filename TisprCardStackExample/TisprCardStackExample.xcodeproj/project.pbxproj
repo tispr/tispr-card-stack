@@ -11,7 +11,6 @@
 		8850ED671B543C8D007333D6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8850ED5E1B543C8D007333D6 /* LaunchScreen.xib */; };
 		8850ED681B543C8D007333D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8850ED601B543C8D007333D6 /* Main.storyboard */; };
 		8850ED691B543C8D007333D6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8850ED621B543C8D007333D6 /* Images.xcassets */; };
-		8850ED6A1B543C8D007333D6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8850ED631B543C8D007333D6 /* Info.plist */; };
 		8850ED6B1B543C8D007333D6 /* TisprCardStackDemoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED641B543C8D007333D6 /* TisprCardStackDemoViewCell.swift */; };
 		8850ED6C1B543C8D007333D6 /* TisprCardStackDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED651B543C8D007333D6 /* TisprCardStackDemoViewController.swift */; };
 /* End PBXBuildFile section */
@@ -136,7 +135,9 @@
 		88E6A2FD1B4D95EC00912452 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "BuddyHopp Inc.";
 				TargetAttributes = {
 					88E6A3041B4D95EC00912452 = {
@@ -183,7 +184,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8850ED6A1B543C8D007333D6 /* Info.plist in Resources */,
 				8850ED691B543C8D007333D6 /* Images.xcassets in Resources */,
 				8850ED671B543C8D007333D6 /* LaunchScreen.xib in Resources */,
 				8850ED681B543C8D007333D6 /* Main.storyboard in Resources */,
@@ -254,6 +254,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -321,6 +322,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TisprCardStackExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.buddyhopp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TisprCardStackExample;
 			};
 			name = Debug;
@@ -332,6 +334,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = TisprCardStackExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.buddyhopp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TisprCardStackExample;
 			};
 			name = Release;

@@ -32,7 +32,7 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
             //workaround for zIndex
             draggedCellPath = oldValue > index ? NSIndexPath(forItem: index, inSection: 0) : NSIndexPath(forItem: oldValue, inSection: 0)
             collectionView?.performBatchUpdates({
-                let x: Void = self.invalidateLayout()
+                _ = self.invalidateLayout()
                 }, completion: nil)
             delegate?.cardDidChangeState(oldValue)
         }
@@ -142,13 +142,15 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         return result
     }
     
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let indexPaths = indexPathsForElementsInRect(rect)
-        let layoutAttributes = indexPaths.map { self.layoutAttributesForItemAtIndexPath($0) }
+        let layoutAttributes = indexPaths.map { self.layoutAttributesForItemAtIndexPath($0) }.filter { $0 != nil }.map {
+            $0!
+        }
         return layoutAttributes
     }
     
-    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         var result = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
         
         if (indexPath.item >= index) {
@@ -342,7 +344,7 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
             self?.newCardAnimationInProgress = true
             self?.collectionView?.insertItemsAtIndexPaths([NSIndexPath(forItem: newCardIndex, inSection: 0)])
             }, completion: {[weak self] _ in
-                let void: ()? = self?.newCardAnimationInProgress = false
+                _ = self?.newCardAnimationInProgress = false
         })
     }
     

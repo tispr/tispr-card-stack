@@ -24,9 +24,9 @@ import UIKit
 
 public class TisprCardStackViewCell: UICollectionViewCell {
     
-    override public func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes!) {
+    override public func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         let center = layoutAttributes.center
-        var animation = CABasicAnimation(keyPath: "position.y")
+        let animation = CABasicAnimation(keyPath: "position.y")
         animation.toValue = center.y
         animation.duration = 0.3
         animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.8, 2.0, 1.0, 1.0)

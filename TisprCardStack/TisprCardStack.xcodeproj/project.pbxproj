@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8850ED791B543CD7007333D6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8850ED741B543CD7007333D6 /* Info.plist */; };
 		8850ED7A1B543CD7007333D6 /* TisprCardStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 8850ED751B543CD7007333D6 /* TisprCardStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8850ED7B1B543CD7007333D6 /* TisprCardStackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED761B543CD7007333D6 /* TisprCardStackViewCell.swift */; };
 		8850ED7C1B543CD7007333D6 /* TisprCardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED771B543CD7007333D6 /* TisprCardStackViewController.swift */; };
@@ -100,7 +99,9 @@
 		88E6A2D11B4D93F300912452 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "BuddyHopp Inc.";
 				TargetAttributes = {
 					88E6A2D91B4D93F300912452 = {
@@ -130,7 +131,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8850ED791B543CD7007333D6 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +172,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -251,6 +252,7 @@
 				INFOPLIST_FILE = TisprCardStack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "tispr.card.stack.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TisprCardStack;
 				SKIP_INSTALL = YES;
 			};
@@ -268,6 +270,7 @@
 				INFOPLIST_FILE = TisprCardStack/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "tispr.card.stack.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TisprCardStack;
 				SKIP_INSTALL = YES;
 			};

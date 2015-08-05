@@ -43,7 +43,7 @@ class TisprCardStackDemoViewCell: TisprCardStackViewCell {
         }
     }
     
-    override internal func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes!) {
+    override internal func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
         super.applyLayoutAttributes(layoutAttributes)
         updateSmileVote()
     }
