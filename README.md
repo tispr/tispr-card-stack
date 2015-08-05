@@ -9,6 +9,11 @@ The tispr  left/right feature. Cards UI
 Ever wanted to know how to code the UI for the swipe left/right feature?
 	•	in Swift
 	•	for iOS8
+	
+please pay attention:
+0.2.x versions with swift 2.0
+0.1.x versions with swift 1.2
+
 
 Installation: With tools
 ------------
