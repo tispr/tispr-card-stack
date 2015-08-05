@@ -19,7 +19,7 @@ Installation: With tools
 ------------
 
 ###[CocoaPods](http://cocoapods.org/):
-In your `Podfile`:
+In your `Podfile`:<br/>
 *swift 1.2*
 ```
 pod "TisprCardStack"
