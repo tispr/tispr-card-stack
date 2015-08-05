@@ -20,8 +20,13 @@ Installation: With tools
 
 ###[CocoaPods](http://cocoapods.org/):
 In your `Podfile`:
+*swift 1.2*
 ```
 pod "TisprCardStack"
+```
+*swift 2.0*
+```
+pod 'TisprCardStack', '~> 0.2.0beta1'
 ```
 And in your `*.swift`:
 ```swift
