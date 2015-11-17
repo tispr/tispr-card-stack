@@ -31,10 +31,14 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         didSet {
             //workaround for zIndex
             draggedCellPath = oldValue > index ? NSIndexPath(forItem: index, inSection: 0) : NSIndexPath(forItem: oldValue, inSection: 0)
+            let cell = collectionView!.cellForItemAtIndexPath(draggedCellPath!)
+            collectionView?.bringSubviewToFront(cell!)
+
             collectionView?.performBatchUpdates({
-                _ = self.invalidateLayout()
-                }, completion: nil)
-            delegate?.cardDidChangeState(oldValue)
+                    _ = self.invalidateLayout()
+                }, completion: { (Bool) in
+                    _ = self.delegate?.cardDidChangeState(self.index)
+            })
         }
     }
     
@@ -162,7 +166,6 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
             //we have to hide invisible cards in bottom stask due perfomance issues due shadows
             result.hidden = (result.indexPath.item < (index - bottomStackMaximumSize))
         }
-        
         
         if indexPath.item == draggedCellPath?.item  {
             //workaround for zIndex
