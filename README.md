@@ -26,7 +26,7 @@ pod "TisprCardStack"
 ```
 *swift 2.0*
 ```
-pod 'TisprCardStack', '~> 0.2.0beta1'
+pod 'TisprCardStack', '~> 0.2.0'
 ```
 And in your `*.swift`:
 ```swift
