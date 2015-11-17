@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name = 'TisprCardStack'
-    s.version = '0.2.0'
+    s.version = '0.2.1'
     s.summary = 'Library that allows to have cards UI with two stacks'
 
     s.description  = 'Library that allows to have cards UI, like Tinder and Potluck. it is based on CollectionView. Works on iOS 8'
