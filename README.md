@@ -11,7 +11,7 @@ Ever wanted to know how to code the UI for the swipe left/right feature?
 	•	for iOS8
 	
 please pay attention:
-- 0.2.x versions with swift 2.0
+- 0.2.x - 0.3.x versions with swift 2.0
 - 0.1.x versions with swift 1.2
 
 
@@ -26,7 +26,7 @@ pod "TisprCardStack"
 ```
 *swift 2.0*
 ```
-pod 'TisprCardStack', '~> 0.2.0'
+pod 'TisprCardStack', '~> 0.3.0'
 ```
 And in your `*.swift`:
 ```swift
