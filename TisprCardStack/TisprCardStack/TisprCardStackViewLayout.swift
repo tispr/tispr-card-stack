@@ -59,6 +59,9 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     // The inset or outset margins for the rectangle around the card.
     @IBInspectable public var cardInsets: UIEdgeInsets = UIEdgeInsetsZero
     
+    //if new card should appear on the bottom
+    @IBInspectable internal var newCardShouldAppearOnTheBottom: Bool = true
+    
     /// A Boolean value indicating whether the pan and swipe gestures on cards are enabled.
     var gesturesEnabled: Bool = false {
         didSet {
@@ -131,7 +134,7 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     
     override public func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         var result :UICollectionViewLayoutAttributes?
-        if itemIndexPath.item == collectionView!.numberOfItemsInSection(0) - 1 && newCardAnimationInProgress {
+        if ((newCardShouldAppearOnTheBottom && itemIndexPath.item == collectionView!.numberOfItemsInSection(0) - 1) || (!newCardShouldAppearOnTheBottom && itemIndexPath.item == 0)) && newCardAnimationInProgress {
             result = UICollectionViewLayoutAttributes(forCellWithIndexPath: itemIndexPath)
             let yPosition = collectionViewContentSize().height - cardSize.height            //Random direction
             let directionFromRight = arc4random() % 2 == 0

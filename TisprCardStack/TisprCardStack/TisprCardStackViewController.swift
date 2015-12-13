@@ -62,7 +62,11 @@ public class TisprCardStackViewController: UICollectionViewController, UIGesture
     
     //This method should be called after adding new card
     public func newCardWasAdded() {
-        layout.newCardDidAdd(numberOfCards() - 1)
+        if layout.newCardShouldAppearOnTheBottom {
+            layout.newCardDidAdd(numberOfCards() - 1)
+        } else {
+            layout.newCardDidAdd(0)
+        }
     }
 
     //method to change animation speed
