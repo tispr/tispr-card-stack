@@ -32,7 +32,9 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
             //workaround for zIndex
             draggedCellPath = oldValue > index ? NSIndexPath(forItem: index, inSection: 0) : NSIndexPath(forItem: oldValue, inSection: 0)
             let cell = collectionView!.cellForItemAtIndexPath(draggedCellPath!)
-            collectionView?.bringSubviewToFront(cell!)
+            if (cell != nil) {
+                collectionView?.bringSubviewToFront(cell!)
+            }
 
             collectionView?.performBatchUpdates({
                     _ = self.invalidateLayout()
