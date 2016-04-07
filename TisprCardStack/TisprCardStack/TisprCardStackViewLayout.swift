@@ -66,18 +66,18 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     var gesturesEnabled: Bool = false {
         didSet {
             if (gesturesEnabled) {
-                let recognizer = UIPanGestureRecognizer(target: self, action: Selector("handlePan:"))
+                let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TisprCardStackViewLayout.handlePan(_:)))
                 collectionView?.addGestureRecognizer(recognizer)
                 panGestureRecognizer = recognizer
                 panGestureRecognizer!.delegate = self
                 
-                swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  Selector("handleSwipe:"))
+                swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  #selector(TisprCardStackViewLayout.handleSwipe(_:)))
                 swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.Down
                 swipeRecognizerDown!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerDown!)
                 swipeRecognizerDown!.requireGestureRecognizerToFail(panGestureRecognizer!)
                 
-                swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  Selector("handleSwipe:"))
+                swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  #selector(TisprCardStackViewLayout.handleSwipe(_:)))
                 swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.Up
                 swipeRecognizerUp!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerUp!)
@@ -250,11 +250,11 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
 //            let currentCard = collectionView!.cellForItemAtIndexPath(NSIndexPath(forItem: temIndex , inSection: 0))!
 //            let point = sender.locationInView(collectionView)
 //            if (point.y > CGRectGetMaxY(currentCard.frame) && index > 0) {
-                index--
+                index -= 1
 //            }
         case UISwipeGestureRecognizerDirection.Down:
             if index + 1 < collectionView!.numberOfItemsInSection(0) {
-                index++
+                index += 1
             }
         default:
             break
@@ -320,9 +320,9 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         } else {
             storeAngleOfRotation()
             if draggedCellPath?.item == index {
-                index++
+                index += 1
             } else {
-                index--
+                index -= 1
             }
             initialCellCenter = CGPointZero
             draggedCellPath = nil
