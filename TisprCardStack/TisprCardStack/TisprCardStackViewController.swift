@@ -93,13 +93,13 @@ public class TisprCardStackViewController: UICollectionViewController, UIGesture
     
     public func moveCardUp() {
         if layout.index > 0 {
-            layout.index--
+            layout.index -= 1
         }
     }
     
     public func moveCardDown() {
         if layout.index <= numberOfCards() - 1 {
-            layout.index++
+            layout.index += 1
         }
     }
 

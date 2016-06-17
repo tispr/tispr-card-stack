@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C10C0BA8335BE0CAE494732A24B526F255698DAC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C10C0BA8335BE0CAE494732A24B526F255698DAC" : 0,
+    "C3845215B04D5F8C8F2D627E986A999C0C970761" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D1DD9CCB-14C6-450E-BFC0-E319D2DC66CC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C10C0BA8335BE0CAE494732A24B526F255698DAC" : "tispr-card-stack\/",
+    "C3845215B04D5F8C8F2D627E986A999C0C970761" : "Card-stack"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TisprCardStackExample",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TisprCardStackExample\/TisprCardStackExample.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Tulakshana\/tispr-card-stack.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C10C0BA8335BE0CAE494732A24B526F255698DAC"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tispr\/card-stack.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C3845215B04D5F8C8F2D627E986A999C0C970761"
+    }
+  ]
+}

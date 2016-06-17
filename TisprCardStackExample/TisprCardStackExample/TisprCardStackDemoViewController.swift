@@ -58,7 +58,7 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
     
     //method to add new card
     @IBAction func addNewCards(sender: AnyObject) {
-        countOfCards++
+        countOfCards += 1
         newCardWasAdded()
     }
 
