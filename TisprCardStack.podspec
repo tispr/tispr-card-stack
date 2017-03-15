@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
 
     s.name = 'TisprCardStack'
-    s.version = '0.3.2'
+    s.version = ‘1.0.0’
     s.summary = 'Library that allows to have cards UI with two stacks'
 
-    s.description  = 'Library that allows to have cards UI, like Tinder and Potluck. it is based on CollectionView. Works on iOS 8'
+    s.description  = 'Library that allows to have cards UI, like Tinder and Potluck. it is based on CollectionView. Works on iOS 8, Swift3’
 
     s.license      = { :type => 'Apache 2.0 License', :file => 'LICENSE.txt' }
 

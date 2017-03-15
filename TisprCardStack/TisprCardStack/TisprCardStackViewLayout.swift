@@ -22,7 +22,7 @@ limitations under the License.
 
 import UIKit
 
-public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
+open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
     
@@ -30,10 +30,10 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     var index: Int = 0 {
         didSet {
             //workaround for zIndex
-            draggedCellPath = oldValue > index ? NSIndexPath(forItem: index, inSection: 0) : NSIndexPath(forItem: oldValue, inSection: 0)
-            let cell = collectionView!.cellForItemAtIndexPath(draggedCellPath!)
+            draggedCellPath = oldValue > index ? IndexPath(item: index, section: 0) : IndexPath(item: oldValue, section: 0)
+            let cell = collectionView!.cellForItem(at: draggedCellPath!)
             if (cell != nil) {
-                collectionView?.bringSubviewToFront(cell!)
+                collectionView?.bringSubview(toFront: cell!)
             }
 
             collectionView?.performBatchUpdates({
@@ -47,19 +47,19 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     var delegate: TisprCardStackViewControllerDelegate?
     
     /// The maximum number of cards displayed on the top stack. This value includes the currently visible card.
-    @IBInspectable public var topStackMaximumSize: Int = 3
+    @IBInspectable open var topStackMaximumSize: Int = 3
     
     /// The maximum number of cards displayed on the bottom stack.
-    @IBInspectable public var bottomStackMaximumSize: Int = 3
+    @IBInspectable open var bottomStackMaximumSize: Int = 3
     
     /// The visible height of the card of the bottom stack.
-    @IBInspectable public var bottomStackCardHeight: CGFloat = 50
+    @IBInspectable open var bottomStackCardHeight: CGFloat = 50
     
     /// The size of a card in the stack layout.
-    @IBInspectable var cardSize: CGSize = CGSizeMake(280, 380)
+    @IBInspectable var cardSize: CGSize = CGSize(width: 280, height: 380)
     
     // The inset or outset margins for the rectangle around the card.
-    @IBInspectable public var cardInsets: UIEdgeInsets = UIEdgeInsetsZero
+    @IBInspectable open var cardInsets: UIEdgeInsets = UIEdgeInsets.zero
     
     //if new card should appear on the bottom
     @IBInspectable internal var newCardShouldAppearOnTheBottom: Bool = true
@@ -74,16 +74,16 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
                 panGestureRecognizer!.delegate = self
                 
                 swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  #selector(TisprCardStackViewLayout.handleSwipe(_:)))
-                swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.Down
+                swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.down
                 swipeRecognizerDown!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerDown!)
-                swipeRecognizerDown!.requireGestureRecognizerToFail(panGestureRecognizer!)
+                swipeRecognizerDown!.require(toFail: panGestureRecognizer!)
                 
                 swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  #selector(TisprCardStackViewLayout.handleSwipe(_:)))
-                swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.Up
+                swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.up
                 swipeRecognizerUp!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerUp!)
-                swipeRecognizerUp!.requireGestureRecognizerToFail(panGestureRecognizer!)
+                swipeRecognizerUp!.require(toFail: panGestureRecognizer!)
             } else {
                 if let recognizer = panGestureRecognizer {
                     collectionView?.removeGestureRecognizer(recognizer)
@@ -100,76 +100,76 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     }
     
     // Index path of dragged cell
-    private var draggedCellPath: NSIndexPath?
+    fileprivate var draggedCellPath: IndexPath?
     
     // The initial center of the cell being dragged.
-    private var initialCellCenter: CGPoint?
+    fileprivate var initialCellCenter: CGPoint?
     
     // The rotation values of the bottom stack cards.
-    private var bottomStackRotations = [Int: Double]()
+    fileprivate var bottomStackRotations = [Int: Double]()
     
     // Is the animation for new cards in progress?
-    private var newCardAnimationInProgress: Bool = false
+    fileprivate var newCardAnimationInProgress: Bool = false
     
     /// Cards from bottom stack will be rotated with angle = coefficientOfRotation * hade.
-    private let coefficientOfRotation: Double = 0.25
+    fileprivate let coefficientOfRotation: Double = 0.25
     
-    private let angleOfRotationForNewCardAnimation: CGFloat = 0.25
+    fileprivate let angleOfRotationForNewCardAnimation: CGFloat = 0.25
     
-    private let verticalOffsetBetweenCardsInTopStack = 10
-    private let centralCardYPosition = 70
+    fileprivate let verticalOffsetBetweenCardsInTopStack = 10
+    fileprivate let centralCardYPosition = 70
     
-    private var panGestureRecognizer: UIPanGestureRecognizer?
-    private var swipeRecognizerDown: UISwipeGestureRecognizer?
-    private var swipeRecognizerUp: UISwipeGestureRecognizer?
+    fileprivate var panGestureRecognizer: UIPanGestureRecognizer?
+    fileprivate var swipeRecognizerDown: UISwipeGestureRecognizer?
+    fileprivate var swipeRecognizerUp: UISwipeGestureRecognizer?
     
-    private let minimumXPanDistanceToSwipe: CGFloat = 100
-    private let minimumYPanDistanceToSwipe: CGFloat = 60
+    fileprivate let minimumXPanDistanceToSwipe: CGFloat = 100
+    fileprivate let minimumYPanDistanceToSwipe: CGFloat = 60
     
     // MARK: - Getting the Collection View Information
     
-    override public func collectionViewContentSize() -> CGSize {
+    override open var collectionViewContentSize : CGSize {
         return collectionView!.frame.size
     }
     
     // MARK: - Providing Layout Attributes
     
-    override public func initialLayoutAttributesForAppearingItemAtIndexPath(itemIndexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+    override open func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         var result :UICollectionViewLayoutAttributes?
-        if ((newCardShouldAppearOnTheBottom && itemIndexPath.item == collectionView!.numberOfItemsInSection(0) - 1) || (!newCardShouldAppearOnTheBottom && itemIndexPath.item == 0)) && newCardAnimationInProgress {
-            result = UICollectionViewLayoutAttributes(forCellWithIndexPath: itemIndexPath)
-            let yPosition = collectionViewContentSize().height - cardSize.height            //Random direction
+        if ((newCardShouldAppearOnTheBottom && itemIndexPath.item == collectionView!.numberOfItems(inSection: 0) - 1) || (!newCardShouldAppearOnTheBottom && itemIndexPath.item == 0)) && newCardAnimationInProgress {
+            result = UICollectionViewLayoutAttributes(forCellWith: itemIndexPath)
+            let yPosition = collectionViewContentSize.height - cardSize.height            //Random direction
             let directionFromRight = arc4random() % 2 == 0
-            let xPosition = directionFromRight ? collectionViewContentSize().width : -cardSize.width
+            let xPosition = directionFromRight ? collectionViewContentSize.width : -cardSize.width
             
-            let cardFrame = CGRectMake(CGFloat(xPosition), yPosition, cardSize.width, cardSize.height)
+            let cardFrame = CGRect(x: CGFloat(xPosition), y: yPosition, width: cardSize.width, height: cardSize.height)
             result!.frame = cardFrame
             result!.zIndex = 1000 - itemIndexPath.item
-            result!.hidden = false
+            result!.isHidden = false
             result!.transform3D = CATransform3DMakeRotation(directionFromRight ?angleOfRotationForNewCardAnimation : -angleOfRotationForNewCardAnimation, 0, 0, 1)
         }
         return result
     }
     
-    public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let indexPaths = indexPathsForElementsInRect(rect)
-        let layoutAttributes = indexPaths.map { self.layoutAttributesForItemAtIndexPath($0) }.filter { $0 != nil }.map {
+        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.filter { $0 != nil }.map {
             $0!
         }
         return layoutAttributes
     }
     
-    public override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        var result = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
+    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        var result = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         if (indexPath.item >= index) {
             result = layoutAttributesForTopStackItemWithInitialAttributes(result)
             //we have to hide invisible cards in top stask due perfomance issues due shadows
-            result.hidden = (result.indexPath.item >= index + topStackMaximumSize)
+            result.isHidden = (result.indexPath.item >= index + topStackMaximumSize)
         } else {
             result = layoutAttributesForBottomStackItemWithInitialAttributes(result)
             //we have to hide invisible cards in bottom stask due perfomance issues due shadows
-            result.hidden = (result.indexPath.item < (index - bottomStackMaximumSize))
+            result.isHidden = (result.indexPath.item < (index - bottomStackMaximumSize))
         }
         
         if indexPath.item == draggedCellPath?.item  {
@@ -183,10 +183,10 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     }
     // MARK: - Implementation
     
-    private func indexPathsForElementsInRect(rect: CGRect) -> [NSIndexPath] {
-        var result = [NSIndexPath]()
+    fileprivate func indexPathsForElementsInRect(_ rect: CGRect) -> [IndexPath] {
+        var result = [IndexPath]()
         
-        let count = collectionView!.numberOfItemsInSection(0)
+        let count = collectionView!.numberOfItems(inSection: 0)
         
         let topStackCount = min(count - (index + 1), topStackMaximumSize - 1)
         let bottomStackCount = min(index, bottomStackMaximumSize)
@@ -195,40 +195,40 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         let end = (index + 1) + topStackCount
         
         for i in start..<end {
-            result.append(NSIndexPath(forItem: i, inSection: 0))
+            result.append(IndexPath(item: i, section: 0))
         }
         return result
     }
     
-    private func layoutAttributesForTopStackItemWithInitialAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    fileprivate func layoutAttributesForTopStackItemWithInitialAttributes(_ attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         //we should not change position for card which will be hidden for good animation
         let minYPosition = centralCardYPosition - verticalOffsetBetweenCardsInTopStack*(topStackMaximumSize - 1)
         var yPosition = centralCardYPosition - verticalOffsetBetweenCardsInTopStack*(attributes.indexPath.row - index)
         yPosition = max(yPosition,minYPosition)
         
         //right position for new card
-        if attributes.indexPath.item == collectionView!.numberOfItemsInSection(0) - 1 && newCardAnimationInProgress {
+        if attributes.indexPath.item == collectionView!.numberOfItems(inSection: 0) - 1 && newCardAnimationInProgress {
             //New card has to be displayed if there are no topStackMaximumSize cards in the top stack
             if attributes.indexPath.item >= index && attributes.indexPath.item < index + topStackMaximumSize {
                 yPosition = centralCardYPosition - verticalOffsetBetweenCardsInTopStack*(attributes.indexPath.row - index)
             } else {
-                attributes.hidden = true
+                attributes.isHidden = true
                 yPosition = centralCardYPosition
             }
         }
         
         let xPosition = (collectionView!.frame.size.width - cardSize.width)/2
-        let cardFrame = CGRectMake(xPosition, CGFloat(yPosition), cardSize.width, cardSize.height)
+        let cardFrame = CGRect(x: xPosition, y: CGFloat(yPosition), width: cardSize.width, height: cardSize.height)
         attributes.frame = cardFrame
         
         return attributes
     }
     
-    private func layoutAttributesForBottomStackItemWithInitialAttributes(attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    fileprivate func layoutAttributesForBottomStackItemWithInitialAttributes(_ attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         let yPosition = collectionView!.frame.size.height - bottomStackCardHeight
         let xPosition = (collectionView!.frame.size.width - cardSize.width)/2
         
-        let frame = CGRectMake(xPosition, CGFloat(yPosition), cardSize.width, cardSize.height)
+        let frame = CGRect(x: xPosition, y: CGFloat(yPosition), width: cardSize.width, height: cardSize.height)
         attributes.frame = frame
         
         if let angle = bottomStackRotations[attributes.indexPath.item] {
@@ -240,9 +240,9 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     
     // MARK: - Handling the Swipe and Pan Gesture
     
-    internal func handleSwipe(sender: UISwipeGestureRecognizer) {
+    internal func handleSwipe(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
-        case UISwipeGestureRecognizerDirection.Up:
+        case UISwipeGestureRecognizerDirection.up:
             // Take the card at the current index
             // and process the swipe up only if it occurs below it
 //            var temIndex = index
@@ -254,8 +254,8 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
 //            if (point.y > CGRectGetMaxY(currentCard.frame) && index > 0) {
                 index -= 1
 //            }
-        case UISwipeGestureRecognizerDirection.Down:
-            if index + 1 < collectionView!.numberOfItemsInSection(0) {
+        case UISwipeGestureRecognizerDirection.down:
+            if index + 1 < collectionView!.numberOfItems(inSection: 0) {
                 index += 1
             }
         default:
@@ -263,79 +263,79 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
         }
     }
     
-    internal func handlePan(sender: UIPanGestureRecognizer) {
-        if (sender.state == .Began) {
-            let initialPanPoint = sender.locationInView(collectionView)
+    internal func handlePan(_ sender: UIPanGestureRecognizer) {
+        if (sender.state == .began) {
+            let initialPanPoint = sender.location(in: collectionView)
             findDraggingCellByCoordinate(initialPanPoint)
-        } else if (sender.state == .Changed) {
-            let newCenter = sender.translationInView(collectionView!)
+        } else if (sender.state == .changed) {
+            let newCenter = sender.translation(in: collectionView!)
             updateCenterPositionOfDraggingCell(newCenter)
         } else {
             if let indexPath = draggedCellPath {
-                finishedDragging(collectionView!.cellForItemAtIndexPath(indexPath)!)
+                finishedDragging(collectionView!.cellForItem(at: indexPath)!)
             }
         }
     }
     
     //Define what card should we drag
-    private func findDraggingCellByCoordinate(touchCoordinate: CGPoint) {
-        if let indexPath = collectionView?.indexPathForItemAtPoint(touchCoordinate) {
+    fileprivate func findDraggingCellByCoordinate(_ touchCoordinate: CGPoint) {
+        if let indexPath = collectionView?.indexPathForItem(at: touchCoordinate) {
             if indexPath.item >= index {
                 //top stack
-                draggedCellPath = NSIndexPath(forItem: index, inSection: 0)
-                initialCellCenter = collectionView?.cellForItemAtIndexPath(draggedCellPath!)?.center
+                draggedCellPath = IndexPath(item: index, section: 0)
+                initialCellCenter = collectionView?.cellForItem(at: draggedCellPath!)?.center
             } else {
                 //bottomStack
                 if (index > 0 ) {
-                    draggedCellPath = NSIndexPath(forItem: index - 1, inSection: 0)
+                    draggedCellPath = IndexPath(item: index - 1, section: 0)
                 }
-                initialCellCenter = collectionView?.cellForItemAtIndexPath(draggedCellPath!)?.center
+                initialCellCenter = collectionView?.cellForItem(at: draggedCellPath!)?.center
             }
             
             //workaround for fix issue with zIndex
-            let cell = collectionView!.cellForItemAtIndexPath(draggedCellPath!)
-            collectionView?.bringSubviewToFront(cell!)
+            let cell = collectionView!.cellForItem(at: draggedCellPath!)
+            collectionView?.bringSubview(toFront: cell!)
             
         }
     }
     
     //Change position of dragged card
-    private func updateCenterPositionOfDraggingCell(touchCoordinate:CGPoint) {
+    fileprivate func updateCenterPositionOfDraggingCell(_ touchCoordinate:CGPoint) {
         if let strongDraggedCellPath = draggedCellPath {
-            if let cell = collectionView?.cellForItemAtIndexPath(strongDraggedCellPath) {
+            if let cell = collectionView?.cellForItem(at: strongDraggedCellPath) {
                 let newCenterX = (initialCellCenter!.x + touchCoordinate.x)
                 let newCenterY =  (initialCellCenter!.y + touchCoordinate.y)
                 cell.center = CGPoint(x: newCenterX, y:newCenterY)
-                cell.transform = CGAffineTransformMakeRotation(CGFloat(storeAngleOfRotation()))
+                cell.transform = CGAffineTransform(rotationAngle: CGFloat(storeAngleOfRotation()))
             }
         }
     }
     
-    private func finishedDragging(cell: UICollectionViewCell) {
+    fileprivate func finishedDragging(_ cell: UICollectionViewCell) {
         let deltaX = abs(cell.center.x - initialCellCenter!.x)
         let deltaY = abs(cell.center.y - initialCellCenter!.y)
         let shouldSnapBack = (deltaX < minimumXPanDistanceToSwipe && deltaY < minimumYPanDistanceToSwipe)
         if shouldSnapBack {
             UIView.setAnimationsEnabled(false)
-            collectionView!.reloadItemsAtIndexPaths([self.draggedCellPath!])
+            collectionView!.reloadItems(at: [self.draggedCellPath!])
             UIView.setAnimationsEnabled(true)
         } else {
-            storeAngleOfRotation()
+            _ = storeAngleOfRotation()
             if draggedCellPath?.item == index {
                 index += 1
             } else {
                 index -= 1
             }
-            initialCellCenter = CGPointZero
+            initialCellCenter = CGPoint.zero
             draggedCellPath = nil
         }
     }
     
     //Compute and Store angle of rotation
-    private func storeAngleOfRotation() -> Double  {
+    fileprivate func storeAngleOfRotation() -> Double  {
         var result:Double = 0
         if let strongDraggedCellPath = draggedCellPath {
-            if let cell = collectionView?.cellForItemAtIndexPath(strongDraggedCellPath) {
+            if let cell = collectionView?.cellForItem(at: strongDraggedCellPath) {
                 let centerYIncidence = collectionView!.frame.size.height + cardSize.height - bottomStackCardHeight
                 let gamma:Double = Double((cell.center.x -  collectionView!.bounds.size.width/2)/(centerYIncidence - cell.center.y))
                 result = atan(gamma)
@@ -347,10 +347,10 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     
     // MARK: - appearance of new card
     
-    func newCardDidAdd(newCardIndex:Int) {
+    func newCardDidAdd(_ newCardIndex:Int) {
         collectionView?.performBatchUpdates({ [weak self] _ in
             self?.newCardAnimationInProgress = true
-            self?.collectionView?.insertItemsAtIndexPaths([NSIndexPath(forItem: newCardIndex, inSection: 0)])
+            self?.collectionView?.insertItems(at: [IndexPath(item: newCardIndex, section: 0)])
             }, completion: {[weak self] _ in
                 _ = self?.newCardAnimationInProgress = false
         })
@@ -358,10 +358,10 @@ public class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecogniz
     
     //MARK: - UIGestureRecognizerDelegate
     
-    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         var result:Bool = true
         if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
-            let velocity = panGesture.velocityInView(collectionView)
+            let velocity = panGesture.velocity(in: collectionView)
             result = abs(Int(velocity.y)) < 250
         }
         return result

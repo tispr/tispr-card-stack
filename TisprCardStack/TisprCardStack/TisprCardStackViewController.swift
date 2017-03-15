@@ -23,45 +23,45 @@ limitations under the License.
 import UIKit
 
 public protocol TisprCardStackViewControllerDelegate  {
-    func cardDidChangeState(cardIndex: Int)
+    func cardDidChangeState(_ cardIndex: Int)
 }
 
-public class TisprCardStackViewController: UICollectionViewController, UIGestureRecognizerDelegate {
+open class TisprCardStackViewController: UICollectionViewController, UIGestureRecognizerDelegate {
     
     /* The speed of animation. */
-    private let animationSpeedDefault: Float = 0.9
+    fileprivate let animationSpeedDefault: Float = 0.9
     
-    public var cardStackDelegate: TisprCardStackViewControllerDelegate? {
+    open var cardStackDelegate: TisprCardStackViewControllerDelegate? {
         didSet {
             layout.delegate = cardStackDelegate
         }
     }
     
-    public var layout: TisprCardStackViewLayout { return collectionViewLayout as! TisprCardStackViewLayout }
+    open var layout: TisprCardStackViewLayout { return collectionViewLayout as! TisprCardStackViewLayout }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         setAnimationSpeed(animationSpeedDefault)
         layout.gesturesEnabled = true
-        collectionView!.scrollEnabled = false
-        setCardSize(CGSizeMake(collectionView!.bounds.width - 40, 2*collectionView!.bounds.height/3))
+        collectionView!.isScrollEnabled = false
+        setCardSize(CGSize(width: collectionView!.bounds.width - 40, height: 2*collectionView!.bounds.height/3))
     
     }
     
-    override public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override open func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfCards()
     }
     
-    override public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return card(collectionView, cardForItemAtIndexPath: indexPath)
     }
     
     //This method should be called after adding new card
-    public func newCardWasAdded() {
+    open func newCardWasAdded() {
         if layout.newCardShouldAppearOnTheBottom {
             layout.newCardDidAdd(numberOfCards() - 1)
         } else {
@@ -70,34 +70,34 @@ public class TisprCardStackViewController: UICollectionViewController, UIGesture
     }
 
     //method to change animation speed
-    public func setAnimationSpeed(speed: Float) {
+    open func setAnimationSpeed(_ speed: Float) {
         collectionView!.layer.speed = speed
     }
     
     //method to set size of cards
-    public func setCardSize(size: CGSize) {
+    open func setCardSize(_ size: CGSize) {
         layout.cardSize = size
     }
     
     //method that should return count of cards
-    public func numberOfCards() -> Int {
+    open func numberOfCards() -> Int {
         assertionFailure("Should be implemented in subsclass")
         return 0
     }
 
     //method that should return card by index
-    public func card(collectionView: UICollectionView, cardForItemAtIndexPath indexPath: NSIndexPath) -> TisprCardStackViewCell {
+    open func card(_ collectionView: UICollectionView, cardForItemAtIndexPath indexPath: IndexPath) -> TisprCardStackViewCell {
         assertionFailure("Should be implemented in subsclass")
         return TisprCardStackViewCell()
     }
     
-    public func moveCardUp() {
+    open func moveCardUp() {
         if layout.index > 0 {
             layout.index -= 1
         }
     }
     
-    public func moveCardDown() {
+    open func moveCardDown() {
         if layout.index <= numberOfCards() - 1 {
             layout.index += 1
         }

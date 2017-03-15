@@ -22,17 +22,17 @@ limitations under the License.
 
 import UIKit
 
-public class TisprCardStackViewCell: UICollectionViewCell {
+open class TisprCardStackViewCell: UICollectionViewCell {
     
-    override public func applyLayoutAttributes(layoutAttributes: UICollectionViewLayoutAttributes) {
+    override open func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         let center = layoutAttributes.center
         let animation = CABasicAnimation(keyPath: "position.y")
         animation.toValue = center.y
         animation.duration = 0.3
         animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.8, 2.0, 1.0, 1.0)
-        layer.addAnimation(animation, forKey: "position.y")
+        layer.add(animation, forKey: "position.y")
 
-        super.applyLayoutAttributes(layoutAttributes)
+        super.apply(layoutAttributes)
     }
     
 }
