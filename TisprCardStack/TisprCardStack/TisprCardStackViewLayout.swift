@@ -252,7 +252,9 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
 //            let currentCard = collectionView!.cellForItemAtIndexPath(NSIndexPath(forItem: temIndex , inSection: 0))!
 //            let point = sender.locationInView(collectionView)
 //            if (point.y > CGRectGetMaxY(currentCard.frame) && index > 0) {
+            if index > 0 {
                 index -= 1
+            }
 //            }
         case UISwipeGestureRecognizerDirection.down:
             if index + 1 < collectionView!.numberOfItems(inSection: 0) {
@@ -283,14 +285,13 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
             if indexPath.item >= index {
                 //top stack
                 draggedCellPath = IndexPath(item: index, section: 0)
-                initialCellCenter = collectionView?.cellForItem(at: draggedCellPath!)?.center
             } else {
                 //bottomStack
                 if (index > 0 ) {
                     draggedCellPath = IndexPath(item: index - 1, section: 0)
                 }
-                initialCellCenter = collectionView?.cellForItem(at: draggedCellPath!)?.center
             }
+            initialCellCenter = collectionView?.cellForItem(at: draggedCellPath!)?.center
             
             //workaround for fix issue with zIndex
             let cell = collectionView!.cellForItem(at: draggedCellPath!)
