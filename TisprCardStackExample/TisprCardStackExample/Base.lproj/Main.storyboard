@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="qtK-Vs-bQo">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qtK-Vs-bQo">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -10,8 +15,9 @@
             <objects>
                 <navigationController id="qtK-Vs-bQo" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cDi-tF-vQl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="dNJ-yq-xIk" kind="relationship" relationship="rootViewController" id="Zuc-D7-JVK"/>
@@ -26,35 +32,35 @@
             <objects>
                 <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="dNJ-yq-xIk" customClass="TisprCardStackDemoViewController" customModule="TisprCardStackExample" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TO4-Nh-bXq">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="k6v-KU-oNw" customClass="TisprCardStackViewLayout" customModule="TisprCardStack"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellIdentifier" id="nGw-4o-lEB" customClass="TisprCardStackDemoViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CellIdentifier" id="nGw-4o-lEB" customClass="TisprCardStackDemoViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="0.0" width="280" height="380"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UEv-88-D61" userLabel="Vote Smile">
-                                            <rect key="frame" x="44" y="94" width="192" height="192"/>
+                                            <rect key="frame" x="21" y="15" width="238" height="238"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="192" id="1RO-HL-Uh5"/>
-                                                <constraint firstAttribute="width" constant="192" id="hFx-tI-6cS"/>
+                                                <constraint firstAttribute="height" constant="238" id="1RO-HL-Uh5"/>
+                                                <constraint firstAttribute="width" constant="238" id="hFx-tI-6cS"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPI-Y1-54q">
-                                            <rect key="frame" x="116" y="20" width="48.5" height="24"/>
+                                            <rect key="frame" x="116.5" y="20" width="48" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="qPI-Y1-54q" secondAttribute="centerX" id="Dzh-bD-8lJ"/>
                                     <constraint firstAttribute="centerX" secondItem="UEv-88-D61" secondAttribute="centerX" id="Rxl-oZ-Trk"/>
@@ -76,26 +82,23 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="4PD-kr-wHl">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" title="UP" id="1KQ-6r-8FM">
-                            <connections>
-                                <action selector="moveUP:" destination="dNJ-yq-xIk" id="swO-Jv-17e"/>
-                            </connections>
-                        </barButtonItem>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xuG-3c-L22">
-                            <rect key="frame" x="256" y="7" width="88" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="New Card">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="addNewCards:" destination="dNJ-yq-xIk" eventType="touchUpInside" id="Yly-bq-xwf"/>
-                            </connections>
-                        </button>
-                        <barButtonItem key="rightBarButtonItem" title="Down" id="jRK-fe-Wro">
-                            <connections>
-                                <action selector="moveCardDown:" destination="dNJ-yq-xIk" id="XqZ-tc-hE8"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="arrow_down" id="jRK-fe-Wro">
+                                <connections>
+                                    <action selector="moveCardDown:" destination="dNJ-yq-xIk" id="XqZ-tc-hE8"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="arrow_up" id="1KQ-6r-8FM">
+                                <connections>
+                                    <action selector="moveUP:" destination="dNJ-yq-xIk" id="swO-Jv-17e"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icon_plus" id="Mnc-R7-tdV">
+                                <connections>
+                                    <action selector="addNewCards:" destination="dNJ-yq-xIk" id="UJ1-BE-dgV"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </collectionViewController>
@@ -104,4 +107,9 @@
             <point key="canvasLocation" x="133" y="446"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrow_down" width="25" height="25"/>
+        <image name="arrow_up" width="25" height="25"/>
+        <image name="icon_plus" width="25" height="25"/>
+    </resources>
 </document>
