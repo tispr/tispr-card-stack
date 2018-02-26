@@ -1,16 +1,6 @@
-Swipable, customizable card stack view, Tinder like cards
-card stack view based on UICollectionView
+Swipable, customizable card stack view, Tinder like card stack view based on UICollectionView. Cards UI
 
-
-
-<img src="./Screenshot_main.gif" width="200" alt="Screenshot" />
-
-The tispr  left/right feature. Cards UI
-
-Ever wanted to know how to code the UI for the swipe left/right feature?
-	•	in Swift
-	•	for iOS9+
-	
+<img src="./Screenshot_main.gif" width="400" alt="Swipable, customizable card stack view, Tinder like card stack view based on UICollectionView" />
 
 
 Сocoapods installation
