@@ -1,4 +1,5 @@
-TisprCardStack
+Swipable, customizable card stack view, Tinder like cards
+
 ============
 
 
@@ -8,23 +9,19 @@ The tispr  left/right feature. Cards UI
 
 Ever wanted to know how to code the UI for the swipe left/right feature?
 	•	in Swift
-	•	for iOS8
+	•	for iOS9+
 	
 please pay attention:
 - 2.x.x versions with swift 4.0
 - 1.x.x  versions with swift 3.0 
-- 0.2.x - 0.3.x versions with swift 2.0
-- 0.1.x versions with swift 1.2
 
 
-Installation: With tools
-------------
+Сocoapods installation
+------------------
 
-###[CocoaPods](http://cocoapods.org/):
-In your `Podfile`:<br/>
-*swift 4.0*
+Add in your `Podfile`:<br/>
 ```
-pod 'TisprCardStack', '~> 2.0.0'
+pod 'TisprCardStack'
 ```
 
 *swift 3.0*
@@ -32,19 +29,22 @@ pod 'TisprCardStack', '~> 2.0.0'
 pod 'TisprCardStack', '~> 1.0.0'
 ```
 
-*swift 2.0*
-```
-pod 'TisprCardStack', '~> 0.3.1'
-```
+please pay attention:
+- 2.x.x versions with swift 4.0
+- 1.x.x  versions with swift 3.0 
+
+
 And in your `*.swift`:
 ```swift
 import TisprCardStack
 ```
 
 
+Manual installation
+------------------
 
-###Installation: Manual
 Add `TisprCardStackViewCell.swift`,`TisprCardStackViewController.swift`, `TisprCardStackViewLayout.swift` into your Xcode project.
+
 
 Usage start
 -----
