@@ -25,16 +25,27 @@ import UIKit
 import TisprCardStack
 
 class TisprCardStackDemoViewCell: TisprCardStackViewCell {
+
     
-    @IBOutlet weak var text: UILabel!
-    @IBOutlet weak var  voteSmile: UIImageView!
+    private struct Constants {
+        static let cellCornerRadius: CGFloat = 12
+        static let animationSpeed: Float = 0.86
+        static let rotationRadius: CGFloat = 15
+        static let smileNeutral = "smile_neutral"
+        static let smileFace1 = "smile_face_1"
+        static let smileFace2 = "smile_face_2"
+        static let smileRotten1 = "smile_rotten_1"
+        static let smileRotten2 = "smile_rotten_2"
+
+    }
+    
+    @IBOutlet  weak var text: UILabel!
+    @IBOutlet private weak var voteSmile: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        layer.cornerRadius = 12
+        layer.cornerRadius = Constants.cellCornerRadius
         clipsToBounds = false
-        
     }
     
     override var center: CGPoint {
@@ -49,17 +60,20 @@ class TisprCardStackDemoViewCell: TisprCardStackViewCell {
     }
     
     @objc func updateSmileVote() {
+        let smileImageName: String
         let rotation = atan2(transform.b, transform.a) * 100
-        var smileImageName = "smile_neutral"
         
-        if rotation > 15 {
-            smileImageName = "smile_face_2"
-        } else if rotation > 0 {
-            smileImageName = "smile_face_1"
-        } else if rotation < -15 {
-            smileImageName = "smile_rotten_2"
-        } else if rotation < 0 {
-            smileImageName = "smile_rotten_1"
+        switch rotation {
+        case -1 * CGFloat.greatestFiniteMagnitude ..< -1 * Constants.rotationRadius:
+            smileImageName = Constants.smileRotten2
+        case -1 * Constants.rotationRadius ..< 0:
+            smileImageName = Constants.smileRotten1
+        case 1..<Constants.rotationRadius:
+            smileImageName = Constants.smileFace1
+        case Constants.rotationRadius ... CGFloat.greatestFiniteMagnitude:
+            smileImageName = Constants.smileFace2
+        default:
+            smileImageName = Constants.smileNeutral
         }
         
         voteSmile.image = UIImage(named: smileImageName)

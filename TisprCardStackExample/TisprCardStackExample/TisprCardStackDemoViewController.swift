@@ -27,14 +27,22 @@ import UIKit
 class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardStackViewControllerDelegate {
     
     
-    fileprivate let colors = [UIColor(red: 45.0/255.0, green: 62.0/255.0, blue: 79.0/255.0, alpha: 1.0),
-        UIColor(red: 48.0/255.0, green: 173.0/255.0, blue: 99.0/255.0, alpha: 1.0),
-        UIColor(red: 141.0/255.0, green: 72.0/255.0, blue: 171.0/255.0, alpha: 1.0),
-        UIColor(red: 241.0/255.0, green: 155.0/255.0, blue: 44.0/255.0, alpha: 1.0),
-        UIColor(red: 234.0/255.0, green: 78.0/255.0, blue: 131.0/255.0, alpha: 1.0),
-        UIColor(red: 80.0/255.0, green: 170.0/255.0, blue: 241.0/255.0, alpha: 1.0)
-    ]
-    
+    private struct Constants {
+        static let cellIndentifier = "TisprCardStackDemoViewCellIdentifier"
+        static let animationSpeed: Float = 0.86
+        static let padding: CGFloat = 20.0
+        static let kHeight: CGFloat = 0.67
+        static let topStackVisibleCardCount = 4
+        static let bottomStackVisibleCardCount = 30
+        static let bottomStackCardHeight: CGFloat = 45.0
+        static let colors = [UIColor(red: 45.0/255.0, green: 62.0/255.0, blue: 79.0/255.0, alpha: 1.0),
+                              UIColor(red: 48.0/255.0, green: 173.0/255.0, blue: 99.0/255.0, alpha: 1.0),
+                              UIColor(red: 141.0/255.0, green: 72.0/255.0, blue: 171.0/255.0, alpha: 1.0),
+                              UIColor(red: 241.0/255.0, green: 155.0/255.0, blue: 44.0/255.0, alpha: 1.0),
+                              UIColor(red: 234.0/255.0, green: 78.0/255.0, blue: 131.0/255.0, alpha: 1.0),
+                              UIColor(red: 80.0/255.0, green: 170.0/255.0, blue: 241.0/255.0, alpha: 1.0)]
+
+    }
     
     fileprivate var countOfCards: Int = 6
     
@@ -42,18 +50,18 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
         super.viewDidLoad()
         
         //set animation speed
-        setAnimationSpeed(0.85)
+        setAnimationSpeed(Constants.animationSpeed)
         
         //set size of cards
-        let size = CGSize(width: view.bounds.width - 40, height: 2*view.bounds.height/3)
+        let size = CGSize(width: view.bounds.width - 2 * Constants.padding, height: Constants.kHeight * view.bounds.height)
         setCardSize(size)
         
         cardStackDelegate = self
         
         //configuration of stacks
-        layout.topStackMaximumSize = 4
-        layout.bottomStackMaximumSize = 30
-        layout.bottomStackCardHeight = 45
+        layout.topStackMaximumSize = Constants.topStackVisibleCardCount
+        layout.bottomStackMaximumSize = Constants.bottomStackVisibleCardCount
+        layout.bottomStackCardHeight = Constants.bottomStackCardHeight
     }
     
     //method to add new card
@@ -68,10 +76,10 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
     }
     
     override func card(_ collectionView: UICollectionView, cardForItemAtIndexPath indexPath: IndexPath) -> TisprCardStackViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellIdentifier", for: indexPath as IndexPath) as! TisprCardStackDemoViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIndentifier, for: indexPath as IndexPath) as! TisprCardStackDemoViewCell
         
-        cell.backgroundColor = colors[indexPath.item % colors.count]
-        cell.text.text = "Card - \(indexPath.item)"
+        cell.backgroundColor = Constants.colors[indexPath.item % Constants.colors.count]
+        cell.text.text = "№ \(indexPath.item)"
         
         return cell
 

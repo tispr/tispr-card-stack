@@ -38,7 +38,7 @@
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewLayout key="collectionViewLayout" id="k6v-KU-oNw" customClass="TisprCardStackViewLayout" customModule="TisprCardStack"/>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CellIdentifier" id="nGw-4o-lEB" customClass="TisprCardStackDemoViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="TisprCardStackDemoViewCellIdentifier" id="nGw-4o-lEB" customClass="TisprCardStackDemoViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="0.0" width="280" height="380"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
