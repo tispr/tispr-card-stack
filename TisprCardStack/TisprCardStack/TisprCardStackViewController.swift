@@ -37,7 +37,7 @@ open class TisprCardStackViewController: UICollectionViewController, UIGestureRe
         }
     }
     
-    open var layout: TisprCardStackViewLayout { return collectionViewLayout as! TisprCardStackViewLayout }
+    @objc open var layout: TisprCardStackViewLayout { return collectionViewLayout as! TisprCardStackViewLayout }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ open class TisprCardStackViewController: UICollectionViewController, UIGestureRe
     }
     
     //This method should be called after adding new card
-    open func newCardWasAdded() {
+    @objc open func newCardWasAdded() {
         if layout.newCardShouldAppearOnTheBottom {
             layout.newCardDidAdd(numberOfCards() - 1)
         } else {
@@ -70,34 +70,34 @@ open class TisprCardStackViewController: UICollectionViewController, UIGestureRe
     }
 
     //method to change animation speed
-    open func setAnimationSpeed(_ speed: Float) {
+    @objc open func setAnimationSpeed(_ speed: Float) {
         collectionView!.layer.speed = speed
     }
     
     //method to set size of cards
-    open func setCardSize(_ size: CGSize) {
+    @objc open func setCardSize(_ size: CGSize) {
         layout.cardSize = size
     }
     
     //method that should return count of cards
-    open func numberOfCards() -> Int {
+    @objc open func numberOfCards() -> Int {
         assertionFailure("Should be implemented in subsclass")
         return 0
     }
 
     //method that should return card by index
-    open func card(_ collectionView: UICollectionView, cardForItemAtIndexPath indexPath: IndexPath) -> TisprCardStackViewCell {
+    @objc open func card(_ collectionView: UICollectionView, cardForItemAtIndexPath indexPath: IndexPath) -> TisprCardStackViewCell {
         assertionFailure("Should be implemented in subsclass")
         return TisprCardStackViewCell()
     }
     
-    open func moveCardUp() {
+    @objc open func moveCardUp() {
         if layout.index > 0 {
             layout.index -= 1
         }
     }
     
-    open func moveCardDown() {
+    @objc open func moveCardDown() {
         if layout.index <= numberOfCards() - 1 {
             layout.index += 1
         }

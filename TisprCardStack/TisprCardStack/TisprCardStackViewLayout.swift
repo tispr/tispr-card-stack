@@ -27,7 +27,7 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
     // MARK: - Properties
     
     /// The index of the card that is currently on top of the stack. The index 0 represents the oldest card of the stack.
-    var index: Int = 0 {
+    @objc var index: Int = 0 {
         didSet {
             //workaround for zIndex
             draggedCellPath = oldValue > index ? IndexPath(item: index, section: 0) : IndexPath(item: oldValue, section: 0)
@@ -65,7 +65,7 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
     @IBInspectable internal var newCardShouldAppearOnTheBottom: Bool = true
     
     /// A Boolean value indicating whether the pan and swipe gestures on cards are enabled.
-    var gesturesEnabled: Bool = false {
+    @objc var gesturesEnabled: Bool = false {
         didSet {
             if (gesturesEnabled) {
                 let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TisprCardStackViewLayout.handlePan(_:)))
@@ -240,7 +240,7 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
     
     // MARK: - Handling the Swipe and Pan Gesture
     
-    internal func handleSwipe(_ sender: UISwipeGestureRecognizer) {
+    @objc internal func handleSwipe(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
         case UISwipeGestureRecognizerDirection.up:
             // Take the card at the current index
@@ -265,7 +265,7 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
         }
     }
     
-    internal func handlePan(_ sender: UIPanGestureRecognizer) {
+    @objc internal func handlePan(_ sender: UIPanGestureRecognizer) {
         if (sender.state == .began) {
             let initialPanPoint = sender.location(in: collectionView)
             findDraggingCellByCoordinate(initialPanPoint)
@@ -348,8 +348,8 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
     
     // MARK: - appearance of new card
     
-    func newCardDidAdd(_ newCardIndex:Int) {
-        collectionView?.performBatchUpdates({ [weak self] _ in
+    @objc func newCardDidAdd(_ newCardIndex:Int) {
+        collectionView?.performBatchUpdates({ [weak self] () in
             self?.newCardAnimationInProgress = true
             self?.collectionView?.insertItems(at: [IndexPath(item: newCardIndex, section: 0)])
             }, completion: {[weak self] _ in

@@ -48,7 +48,7 @@ class TisprCardStackDemoViewCell: TisprCardStackViewCell {
         updateSmileVote()
     }
     
-    func updateSmileVote() {
+    @objc func updateSmileVote() {
         let rotation = atan2(transform.b, transform.a) * 100
         var smileImageName = "smile_neutral"
         

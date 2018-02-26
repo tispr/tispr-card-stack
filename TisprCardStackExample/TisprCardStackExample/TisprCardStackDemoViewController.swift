@@ -85,7 +85,7 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
         moveCardDown()
     }
     
-    func cardDidChangeState(_ cardIndex: Int) {
+    @objc func cardDidChangeState(_ cardIndex: Int) {
         print("card with index - \(cardIndex) changed position")
     }
 }
