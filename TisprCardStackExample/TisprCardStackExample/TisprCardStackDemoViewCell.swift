@@ -39,7 +39,7 @@ class TisprCardStackDemoViewCell: TisprCardStackViewCell {
 
     }
     
-    @IBOutlet  weak var text: UILabel!
+    @IBOutlet weak var text: UILabel!
     @IBOutlet private weak var voteSmile: UIImageView!
     
     override func awakeFromNib() {

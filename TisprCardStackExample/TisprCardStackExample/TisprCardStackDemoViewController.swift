@@ -22,9 +22,8 @@ limitations under the License.
 //
 
 import TisprCardStack
-import UIKit
 
-class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardStackViewControllerDelegate {
+class TisprCardStackDemoViewController: TisprCardStackViewController {
     
     
     private struct Constants {
@@ -64,13 +63,6 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
         layout.bottomStackCardHeight = Constants.bottomStackCardHeight
     }
     
-    //method to add new card
-    @IBAction func addNewCards(_ sender: AnyObject) {
-        countOfCards += 1
-        newCardWasAdded()
-    }
-
-    
     override func numberOfCards() -> Int {
         return countOfCards
     }
@@ -85,6 +77,14 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
 
     }
 
+    
+    //method to add new card
+    @IBAction func addNewCards(_ sender: AnyObject) {
+        countOfCards += 1
+        newCardWasAdded()
+    }
+
+    
     @IBAction func moveUP(_ sender: AnyObject) {
         moveCardUp()
     }
@@ -93,6 +93,9 @@ class TisprCardStackDemoViewController: TisprCardStackViewController, TisprCardS
         moveCardDown()
     }
     
+}
+
+extension TisprCardStackDemoViewController: TisprCardStackViewControllerDelegate {
     @objc func cardDidChangeState(_ cardIndex: Int) {
         // Method to observe card postion changes
     }
