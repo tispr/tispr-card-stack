@@ -15,55 +15,76 @@ limitations under the License.
 */
 
 //
-//  TisprCardStackViewController
+//  CardStackViewController
 //
 //  Created by Andrei Pitsko on 07/12/15.
 //
 
 import UIKit
 
-public protocol TisprCardStackViewControllerDelegate  {
+open class CardStackView: UICollectionView {
+}
+
+open class CardStackViewCell: UICollectionViewCell {
+}
+
+public protocol CardStackDelegate  {
     func cardDidChangeState(_ cardIndex: Int)
 }
 
-open class TisprCardStackViewController: UICollectionViewController, UIGestureRecognizerDelegate {
+public protocol CardStackDatasource  {
+    func numberOfCards(in cardStack: CardStackView) -> Int
+    func card(_ cardStack: CardStackView, cardForItemAtIndex index: IndexPath) -> CardStackViewCell
+}
+
+
+open class CardStackViewController: UICollectionViewController, UIGestureRecognizerDelegate {
     
-    /* The speed of animation. */
-    fileprivate let animationSpeedDefault: Float = 0.9
+    private struct Constants {
+        static let cardsPadding: CGFloat = 20
+        static let cardsHeightFactor: CGFloat = 0.33
+
+    }
     
-    open var cardStackDelegate: TisprCardStackViewControllerDelegate? {
+    open var cardStackDelegate: CardStackDelegate? {
         didSet {
             layout.delegate = cardStackDelegate
         }
     }
     
-    @objc open var layout: TisprCardStackViewLayout { return collectionViewLayout as! TisprCardStackViewLayout }
+    open var datasource: CardStackDatasource?
+    
+    @objc open var layout: CardStackViewLayout { return collectionViewLayout as! CardStackViewLayout }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        setAnimationSpeed(animationSpeedDefault)
         layout.gesturesEnabled = true
         collectionView!.isScrollEnabled = false
-        setCardSize(CGSize(width: collectionView!.bounds.width - 40, height: 2*collectionView!.bounds.height/3))
+        setCardSize(CGSize(width: collectionView!.bounds.width - 2 * Constants.cardsPadding, height: Constants.cardsHeightFactor * collectionView!.bounds.height))
     
-    }
-    
-    override open func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
     }
     
     override open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfCards()
+        guard let datasource = datasource else {
+            assertionFailure("please set datasource before")
+            return 0
+        }
+        guard let cardStack = collectionView as? CardStackView else {
+            assertionFailure("please use CardStackView insted of UICollectionView")
+            return 0
+        }
+
+        return datasource.numberOfCards(in: cardStack)
     }
     
     override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return card(collectionView, cardForItemAtIndexPath: indexPath)
+        return datasource!.card(collectionView as! CardStackView, cardForItemAtIndex: indexPath)
     }
     
-    //This method should be called after adding new card
-    @objc open func newCardWasAdded() {
+    //This method should be called when new card added
+    @objc open func newCardAdded() {
         if layout.newCardShouldAppearOnTheBottom {
-            layout.newCardDidAdd(numberOfCards() - 1)
+            layout.newCardDidAdd(datasource!.numberOfCards(in: collectionView as! CardStackView) - 1)
         } else {
             layout.newCardDidAdd(0)
         }
@@ -79,18 +100,6 @@ open class TisprCardStackViewController: UICollectionViewController, UIGestureRe
         layout.cardSize = size
     }
     
-    //method that should return count of cards
-    @objc open func numberOfCards() -> Int {
-        assertionFailure("Should be implemented in subsclass")
-        return 0
-    }
-
-    //method that should return card by index
-    @objc open func card(_ collectionView: UICollectionView, cardForItemAtIndexPath indexPath: IndexPath) -> TisprCardStackViewCell {
-        assertionFailure("Should be implemented in subsclass")
-        return TisprCardStackViewCell()
-    }
-    
     @objc open func moveCardUp() {
         if layout.index > 0 {
             layout.index -= 1
@@ -98,7 +107,7 @@ open class TisprCardStackViewController: UICollectionViewController, UIGestureRe
     }
     
     @objc open func moveCardDown() {
-        if layout.index <= numberOfCards() - 1 {
+        if layout.index <= datasource!.numberOfCards(in: collectionView as! CardStackView) - 1 {
             layout.index += 1
         }
     }

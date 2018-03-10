@@ -24,7 +24,7 @@ limitations under the License.
 import UIKit
 import TisprCardStack
 
-class TisprCardStackDemoViewCell: TisprCardStackViewCell {
+class TisprCardStackDemoViewCell: CardStackViewCell {
 
     
     private struct Constants {

@@ -8,16 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8850ED7A1B543CD7007333D6 /* TisprCardStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 8850ED751B543CD7007333D6 /* TisprCardStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8850ED7B1B543CD7007333D6 /* TisprCardStackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED761B543CD7007333D6 /* TisprCardStackViewCell.swift */; };
-		8850ED7C1B543CD7007333D6 /* TisprCardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED771B543CD7007333D6 /* TisprCardStackViewController.swift */; };
+		8850ED7C1B543CD7007333D6 /* CardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED771B543CD7007333D6 /* CardStackViewController.swift */; };
 		8850ED7D1B543CD7007333D6 /* TisprCardStackViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED781B543CD7007333D6 /* TisprCardStackViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8850ED741B543CD7007333D6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8850ED751B543CD7007333D6 /* TisprCardStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TisprCardStack.h; sourceTree = "<group>"; };
-		8850ED761B543CD7007333D6 /* TisprCardStackViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewCell.swift; sourceTree = "<group>"; };
-		8850ED771B543CD7007333D6 /* TisprCardStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewController.swift; sourceTree = "<group>"; };
+		8850ED771B543CD7007333D6 /* CardStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackViewController.swift; sourceTree = "<group>"; };
 		8850ED781B543CD7007333D6 /* TisprCardStackViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TisprCardStackViewLayout.swift; sourceTree = "<group>"; };
 		88E6A2DA1B4D93F300912452 /* TisprCardStack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TisprCardStack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -38,8 +36,7 @@
 			children = (
 				8850ED741B543CD7007333D6 /* Info.plist */,
 				8850ED751B543CD7007333D6 /* TisprCardStack.h */,
-				8850ED761B543CD7007333D6 /* TisprCardStackViewCell.swift */,
-				8850ED771B543CD7007333D6 /* TisprCardStackViewController.swift */,
+				8850ED771B543CD7007333D6 /* CardStackViewController.swift */,
 				8850ED781B543CD7007333D6 /* TisprCardStackViewLayout.swift */,
 			);
 			path = TisprCardStack;
@@ -142,8 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8850ED7C1B543CD7007333D6 /* TisprCardStackViewController.swift in Sources */,
-				8850ED7B1B543CD7007333D6 /* TisprCardStackViewCell.swift in Sources */,
+				8850ED7C1B543CD7007333D6 /* CardStackViewController.swift in Sources */,
 				8850ED7D1B543CD7007333D6 /* TisprCardStackViewLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

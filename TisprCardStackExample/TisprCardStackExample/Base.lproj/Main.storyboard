@@ -31,12 +31,12 @@
         <scene sceneID="Sb1-rj-0Ty">
             <objects>
                 <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="dNJ-yq-xIk" customClass="TisprCardStackDemoViewController" customModule="TisprCardStackExample" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TO4-Nh-bXq">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="TO4-Nh-bXq" customClass="CardStackView" customModule="TisprCardStack">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="k6v-KU-oNw" customClass="TisprCardStackViewLayout" customModule="TisprCardStack"/>
+                        <collectionViewLayout key="collectionViewLayout" id="k6v-KU-oNw" customClass="CardStackViewLayout" customModule="TisprCardStack"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="TisprCardStackDemoViewCellIdentifier" id="nGw-4o-lEB" customClass="TisprCardStackDemoViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
                                 <rect key="frame" x="47.5" y="0.0" width="280" height="380"/>

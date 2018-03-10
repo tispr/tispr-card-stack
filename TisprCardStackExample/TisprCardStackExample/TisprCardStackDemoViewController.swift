@@ -23,7 +23,7 @@ limitations under the License.
 
 import TisprCardStack
 
-class TisprCardStackDemoViewController: TisprCardStackViewController {
+class TisprCardStackDemoViewController: CardStackViewController {
     
     
     private struct Constants {
@@ -48,40 +48,22 @@ class TisprCardStackDemoViewController: TisprCardStackViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //set animation speed
-        setAnimationSpeed(Constants.animationSpeed)
-        
         //set size of cards
         let size = CGSize(width: view.bounds.width - 2 * Constants.padding, height: Constants.kHeight * view.bounds.height)
         setCardSize(size)
         
         cardStackDelegate = self
-        
+        datasource = self
         //configuration of stacks
         layout.topStackMaximumSize = Constants.topStackVisibleCardCount
         layout.bottomStackMaximumSize = Constants.bottomStackVisibleCardCount
         layout.bottomStackCardHeight = Constants.bottomStackCardHeight
     }
     
-    override func numberOfCards() -> Int {
-        return countOfCards
-    }
-    
-    override func card(_ collectionView: UICollectionView, cardForItemAtIndexPath indexPath: IndexPath) -> TisprCardStackViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIndentifier, for: indexPath as IndexPath) as! TisprCardStackDemoViewCell
-        
-        cell.backgroundColor = Constants.colors[indexPath.item % Constants.colors.count]
-        cell.text.text = "№ \(indexPath.item)"
-        
-        return cell
-
-    }
-
-    
     //method to add new card
     @IBAction func addNewCards(_ sender: AnyObject) {
         countOfCards += 1
-        newCardWasAdded()
+        newCardAdded()
     }
 
     
@@ -95,7 +77,21 @@ class TisprCardStackDemoViewController: TisprCardStackViewController {
     
 }
 
-extension TisprCardStackDemoViewController: TisprCardStackViewControllerDelegate {
+extension TisprCardStackDemoViewController : CardStackDatasource {
+    func numberOfCards(in cardStack: CardStackView) -> Int {
+        return countOfCards
+    }
+    
+    func card(_ cardStack: CardStackView, cardForItemAtIndex index: IndexPath) -> CardStackViewCell {
+        let cell = cardStack.dequeueReusableCell(withReuseIdentifier: Constants.cellIndentifier, for: index) as! TisprCardStackDemoViewCell
+        cell.backgroundColor = Constants.colors[index.item % Constants.colors.count]
+        cell.text.text = "№ \(index.item)"
+        return cell
+    }
+    
+}
+
+extension TisprCardStackDemoViewController: CardStackDelegate {
     @objc func cardDidChangeState(_ cardIndex: Int) {
         // Method to observe card postion changes
     }

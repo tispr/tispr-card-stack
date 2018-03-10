@@ -15,14 +15,14 @@ limitations under the License.
 */
 
 //
-//  TisprCardStackViewLayout.swift
+//  CardStackViewLayout
 //
 //  Created by Andrei Pitsko on 07/12/15.
 //
 
 import UIKit
 
-open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
+open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
     
     // MARK: - Properties
     
@@ -44,7 +44,7 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
         }
     }
     
-    var delegate: TisprCardStackViewControllerDelegate?
+    var delegate: CardStackDelegate?
     
     /// The maximum number of cards displayed on the top stack. This value includes the currently visible card.
     @IBInspectable open var topStackMaximumSize: Int = 3
@@ -68,18 +68,18 @@ open class TisprCardStackViewLayout: UICollectionViewLayout, UIGestureRecognizer
     @objc var gesturesEnabled: Bool = false {
         didSet {
             if (gesturesEnabled) {
-                let recognizer = UIPanGestureRecognizer(target: self, action: #selector(TisprCardStackViewLayout.handlePan(_:)))
+                let recognizer = UIPanGestureRecognizer(target: self, action: #selector(CardStackViewLayout.handlePan(_:)))
                 collectionView?.addGestureRecognizer(recognizer)
                 panGestureRecognizer = recognizer
                 panGestureRecognizer!.delegate = self
                 
-                swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  #selector(TisprCardStackViewLayout.handleSwipe(_:)))
+                swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  #selector(CardStackViewLayout.handleSwipe(_:)))
                 swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.down
                 swipeRecognizerDown!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerDown!)
                 swipeRecognizerDown!.require(toFail: panGestureRecognizer!)
                 
-                swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  #selector(TisprCardStackViewLayout.handleSwipe(_:)))
+                swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  #selector(CardStackViewLayout.handleSwipe(_:)))
                 swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.up
                 swipeRecognizerUp!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerUp!)
