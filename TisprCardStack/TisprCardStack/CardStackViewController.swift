@@ -46,9 +46,9 @@ open class CardStackViewController: UICollectionViewController, UIGestureRecogni
 
     }
     
-    open var cardStackDelegate: CardStackDelegate? {
+    open var delegate: CardStackDelegate? {
         didSet {
-            layout.delegate = cardStackDelegate
+            layout.delegate = delegate
         }
     }
     

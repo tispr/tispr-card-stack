@@ -56,16 +56,16 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     @IBInspectable open var bottomStackCardHeight: CGFloat = 50
     
     /// The size of a card in the stack layout.
-    @IBInspectable var cardSize: CGSize = CGSize(width: 280, height: 380)
+    @IBInspectable var cardSize = CGSize(width: 280, height: 380)
     
     // The inset or outset margins for the rectangle around the card.
-    @IBInspectable open var cardInsets: UIEdgeInsets = UIEdgeInsets.zero
+    @IBInspectable open var cardInsets: UIEdgeInsets = .zero
     
     //if new card should appear on the bottom
-    @IBInspectable internal var newCardShouldAppearOnTheBottom: Bool = true
+    @IBInspectable internal var newCardShouldAppearOnTheBottom = true
     
     /// A Boolean value indicating whether the pan and swipe gestures on cards are enabled.
-    @objc var gesturesEnabled: Bool = false {
+    @objc var gesturesEnabled = false {
         didSet {
             if (gesturesEnabled) {
                 let recognizer = UIPanGestureRecognizer(target: self, action: #selector(CardStackViewLayout.handlePan(_:)))
@@ -321,7 +321,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
             collectionView!.reloadItems(at: [self.draggedCellPath!])
             UIView.setAnimationsEnabled(true)
         } else {
-            _ = storeAngleOfRotation()
+            storeAngleOfRotation()
             if draggedCellPath?.item == index {
                 index += 1
             } else {
@@ -334,11 +334,11 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     
     //Compute and Store angle of rotation
     fileprivate func storeAngleOfRotation() -> Double  {
-        var result:Double = 0
+        var result: Double = 0
         if let strongDraggedCellPath = draggedCellPath {
             if let cell = collectionView?.cellForItem(at: strongDraggedCellPath) {
                 let centerYIncidence = collectionView!.frame.size.height + cardSize.height - bottomStackCardHeight
-                let gamma:Double = Double((cell.center.x -  collectionView!.bounds.size.width/2)/(centerYIncidence - cell.center.y))
+                let gamma: Double = Double((cell.center.x -  collectionView!.bounds.size.width/2)/(centerYIncidence - cell.center.y))
                 result = atan(gamma)
                 bottomStackRotations[strongDraggedCellPath.item] = atan(gamma)*coefficientOfRotation
             }
@@ -360,7 +360,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     //MARK: - UIGestureRecognizerDelegate
     
     open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        var result:Bool = true
+        var result: Bool = true
         if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
             let velocity = panGesture.velocity(in: collectionView)
             result = abs(Int(velocity.y)) < 250

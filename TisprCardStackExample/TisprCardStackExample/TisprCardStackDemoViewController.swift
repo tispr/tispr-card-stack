@@ -52,7 +52,7 @@ class TisprCardStackDemoViewController: CardStackViewController {
         let size = CGSize(width: view.bounds.width - 2 * Constants.padding, height: Constants.kHeight * view.bounds.height)
         setCardSize(size)
         
-        cardStackDelegate = self
+        delegate = self
         datasource = self
         //configuration of stacks
         layout.topStackMaximumSize = Constants.topStackVisibleCardCount
