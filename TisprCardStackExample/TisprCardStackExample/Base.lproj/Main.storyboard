@@ -82,6 +82,11 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="4PD-kr-wHl">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="AZL-jR-Hgz">
+                            <connections>
+                                <action selector="deleteAction:" destination="dNJ-yq-xIk" id="JcZ-pW-CVp"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="arrow_down" id="jRK-fe-Wro">
                                 <connections>

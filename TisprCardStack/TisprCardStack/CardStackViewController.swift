@@ -22,11 +22,8 @@ limitations under the License.
 
 import UIKit
 
-open class CardStackView: UICollectionView {
-}
-
-open class CardStackViewCell: UICollectionViewCell {
-}
+public typealias CardStackView = UICollectionView
+public typealias CardStackViewCell = UICollectionViewCell
 
 public protocol CardStackDelegate  {
     func cardDidChangeState(_ cardIndex: Int)
@@ -54,7 +51,7 @@ open class CardStackViewController: UICollectionViewController, UIGestureRecogni
     
     open var datasource: CardStackDatasource?
     
-    @objc open var layout: CardStackViewLayout { return collectionViewLayout as! CardStackViewLayout }
+    open var layout: CardStackViewLayout { return collectionViewLayout as! CardStackViewLayout }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -69,47 +66,43 @@ open class CardStackViewController: UICollectionViewController, UIGestureRecogni
             assertionFailure("please set datasource before")
             return 0
         }
-        guard let cardStack = collectionView as? CardStackView else {
-            assertionFailure("please use CardStackView insted of UICollectionView")
-            return 0
-        }
 
-        return datasource.numberOfCards(in: cardStack)
+        return datasource.numberOfCards(in: collectionView)
     }
     
     override open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return datasource!.card(collectionView as! CardStackView, cardForItemAtIndex: indexPath)
+        return datasource!.card(collectionView, cardForItemAtIndex: indexPath)
     }
     
     //This method should be called when new card added
-    @objc open func newCardAdded() {
-        if layout.newCardShouldAppearOnTheBottom {
-            layout.newCardDidAdd(datasource!.numberOfCards(in: collectionView as! CardStackView) - 1)
-        } else {
-            layout.newCardDidAdd(0)
-        }
+    open func newCardAdded() {
+        layout.newCardDidAdd(datasource!.numberOfCards(in: collectionView!) - 1)
     }
 
     //method to change animation speed
-    @objc open func setAnimationSpeed(_ speed: Float) {
+    open func setAnimationSpeed(_ speed: Float) {
         collectionView!.layer.speed = speed
     }
     
     //method to set size of cards
-    @objc open func setCardSize(_ size: CGSize) {
+    open func setCardSize(_ size: CGSize) {
         layout.cardSize = size
     }
     
-    @objc open func moveCardUp() {
+    open func moveCardUp() {
         if layout.index > 0 {
             layout.index -= 1
         }
     }
     
-    @objc open func moveCardDown() {
-        if layout.index <= datasource!.numberOfCards(in: collectionView as! CardStackView) - 1 {
+    open func moveCardDown() {
+        if layout.index <= datasource!.numberOfCards(in: collectionView!) - 1 {
             layout.index += 1
         }
+    }
+
+    open func deleteCard() {
+        layout.cardDidRemoved(layout.index)
     }
 
 }

@@ -31,7 +31,7 @@ class TisprCardStackDemoViewController: CardStackViewController {
         static let animationSpeed: Float = 0.86
         static let padding: CGFloat = 20.0
         static let kHeight: CGFloat = 0.67
-        static let topStackVisibleCardCount = 4
+        static let topStackVisibleCardCount = 40
         static let bottomStackVisibleCardCount = 30
         static let bottomStackCardHeight: CGFloat = 45.0
         static let colors = [UIColor(red: 45.0/255.0, green: 62.0/255.0, blue: 79.0/255.0, alpha: 1.0),
@@ -74,7 +74,12 @@ class TisprCardStackDemoViewController: CardStackViewController {
     @IBAction func moveCardDown(_ sender: AnyObject) {
         moveCardDown()
     }
-    
+
+    @IBAction func deleteAction(_ sender: AnyObject) {
+        countOfCards -= 1
+        deleteCard()
+    }
+
 }
 
 extension TisprCardStackDemoViewController : CardStackDatasource {
@@ -92,7 +97,7 @@ extension TisprCardStackDemoViewController : CardStackDatasource {
 }
 
 extension TisprCardStackDemoViewController: CardStackDelegate {
-    @objc func cardDidChangeState(_ cardIndex: Int) {
+    func cardDidChangeState(_ cardIndex: Int) {
         // Method to observe card postion changes
     }
 }
