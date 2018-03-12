@@ -69,6 +69,10 @@ func newCardWasAdded()
         moveCardUp()
         moveCardDown()
   ```
+1. Delete card:
+  ```swift
+		deleteCard
+  ```
 1. You can track changing of card stack in method:
   ```swift
 	func cardDidChangeState(cardIndex: Int)
