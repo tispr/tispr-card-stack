@@ -1,18 +1,18 @@
 /*
-Copyright 2015 BuddyHopp, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
+ Copyright 2015 BuddyHopp, Inc.
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 
 //
 //  CardStackViewLayout
@@ -21,6 +21,14 @@ limitations under the License.
 //
 
 import UIKit
+
+//enum PanDirection {
+//    case undefined
+//    case left
+//    case right
+//    case up
+//    case down
+//}
 
 open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDelegate {
     
@@ -33,20 +41,24 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
                 return
             }
             collectionView?.bringSubview(toFront: cell)
-
+            
             collectionView?.performBatchUpdates({ [weak self] in
                 self?.invalidateLayout()
-            }, completion: { [weak self] _ in
-                guard let strongself = self else {
-                    return
-                }
-
-                strongself.delegate?.cardDidChangeState(strongself.index)
+                }, completion: { [weak self] _ in
+                    guard let strongself = self else {
+                        return
+                    }
+                    
+                    strongself.delegate?.cardDidChangeState(strongself.index)
             })
         }
     }
     
     var delegate: CardStackDelegate?
+    
+    //    var direction : PanDirection!
+    
+    var initialPanPoint: CGPoint!
     
     /// The maximum number of cards displayed on the top stack. This value includes the currently visible card.
     @IBInspectable open var topStackMaximumSize: Int = 3
@@ -55,7 +67,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     @IBInspectable open var bottomStackMaximumSize: Int = 3
     
     /// The visible height of the card of the bottom stack.
-    @IBInspectable open var bottomStackCardHeight: CGFloat = 50
+    @IBInspectable open var bottomStackCardHeight: CGFloat = 100
     
     /// The size of a card in the stack layout.
     @IBInspectable open var cardSize = CGSize(width: 280, height: 380)
@@ -69,7 +81,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     @IBInspectable open var angleOfRotationForNewCardAnimation: CGFloat = 0.25
     
     @IBInspectable open var verticalOffsetBetweenCardsInTopStack: Int = 10
-    @IBInspectable open var centralCardYPosition: Int = 70
+    @IBInspectable open var centralCardYPosition: Int = 20
     
     @IBInspectable open var minimumXPanDistanceToSwipe: CGFloat = 100
     @IBInspectable open var minimumYPanDistanceToSwipe: CGFloat = 60
@@ -85,15 +97,15 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
                 collectionView?.addGestureRecognizer(recognizer)
                 panGestureRecognizer = recognizer
                 panGestureRecognizer!.delegate = self
-                
+                //                collectionView?.removeGestureRecognizer(recognizer)
                 swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  #selector(CardStackViewLayout.handleSwipe(_:)))
-                swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.down
+                swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.left
                 swipeRecognizerDown!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerDown!)
                 swipeRecognizerDown!.require(toFail: panGestureRecognizer!)
                 
                 swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  #selector(CardStackViewLayout.handleSwipe(_:)))
-                swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.up
+                swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.right
                 swipeRecognizerUp!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerUp!)
                 swipeRecognizerUp!.require(toFail: panGestureRecognizer!)
@@ -127,7 +139,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     
     fileprivate let maxZIndexTopStack = 1000
     fileprivate let dragingCellZIndex = 10000
-
+    
     // MARK: - Getting the Collection View Information
     
     override open var collectionViewContentSize : CGSize {
@@ -137,7 +149,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     // MARK: - Providing Layout Attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let indexPaths = indexPathsForElementsInRect(rect)
-        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.flatMap{ $0 }
+        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.compactMap{ $0 }
         return layoutAttributes
     }
     
@@ -181,42 +193,45 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     
     fileprivate func layoutAttributesForTopStackItemWithInitialAttributes(_ attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
         //we should not change position for card which will be hidden for good animation
-        let minYPosition = centralCardYPosition - verticalOffsetBetweenCardsInTopStack*(topStackMaximumSize - 1)
-        var yPosition = centralCardYPosition - verticalOffsetBetweenCardsInTopStack*(attributes.indexPath.row - index)
-        yPosition = max(yPosition,minYPosition)
+        let minYPosition = centralCardYPosition + verticalOffsetBetweenCardsInTopStack*(topStackMaximumSize - 1)
+        var yPosition = centralCardYPosition + verticalOffsetBetweenCardsInTopStack*(attributes.indexPath.row - index)
+        yPosition = min(yPosition,minYPosition)
         
         //right position for new card
         if attributes.indexPath.item == collectionView!.numberOfItems(inSection: 0) - 1 && newCardAnimationInProgress {
             //New card has to be displayed if there are no topStackMaximumSize cards in the top stack
             if attributes.indexPath.item >= index && attributes.indexPath.item < index + topStackMaximumSize {
-                yPosition = centralCardYPosition - verticalOffsetBetweenCardsInTopStack*(attributes.indexPath.row - index)
+                yPosition = centralCardYPosition + verticalOffsetBetweenCardsInTopStack*(attributes.indexPath.row - index)
             } else {
                 attributes.isHidden = true
                 yPosition = centralCardYPosition
             }
         }
         
-        let xPosition = (collectionView!.frame.size.width - cardSize.width)/2
-        let cardFrame = CGRect(x: xPosition, y: CGFloat(yPosition), width: cardSize.width, height: cardSize.height)
+        let xPosition = (collectionView!.frame.size.height - cardSize.height)/2
+        let cardFrame = CGRect(x: CGFloat(yPosition), y: xPosition, width: cardSize.width, height: cardSize.height)
         attributes.frame = cardFrame
         
         return attributes
     }
     
     fileprivate func layoutAttributesForBottomStackItemWithInitialAttributes(_ attributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let yPosition = collectionView!.frame.size.height - bottomStackCardHeight
-        let xPosition = (collectionView!.frame.size.width - cardSize.width)/2
+        let yPosition = (collectionView!.frame.size.height - cardSize.height)/2
+        //5s 3.9
+        //6plus 4.2
+        //8plus 4.4
+        let xPosition = -(4.4 * collectionView!.frame.size.width)/5
         
         let frame = CGRect(x: xPosition, y: CGFloat(yPosition), width: cardSize.width, height: cardSize.height)
         attributes.frame = frame
         
-        if let angle = bottomStackRotations[attributes.indexPath.item] {
-            attributes.transform3D = CATransform3DMakeRotation(CGFloat(angle), 0, 0, 1)
-        }
+        //        if let angle = bottomStackRotations[attributes.indexPath.item] {
+        //            attributes.transform3D = CATransform3DMakeRotation(CGFloat(angle), 0, 0, 1)
+        //        }
         
         return attributes
     }
-
+    
     override open func initialLayoutAttributesForAppearingItem(at itemIndexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         var result: UICollectionViewLayoutAttributes?
         
@@ -232,47 +247,127 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
             result!.frame = cardFrame
             result!.zIndex = maxZIndexTopStack - itemIndexPath.item
             result!.isHidden = false
-            result!.transform3D = CATransform3DMakeRotation(directionFromRight ? angleOfRotationForNewCardAnimation : -angleOfRotationForNewCardAnimation, 0, 0, 1)
+            //            result!.transform3D = CATransform3DMakeRotation(directionFromRight ? angleOfRotationForNewCardAnimation : -angleOfRotationForNewCardAnimation, 0, 0, 1)
         }
         
         return result
     }
-
+    
     // MARK: - Handling the Swipe and Pan Gesture
     
     @objc internal func handleSwipe(_ sender: UISwipeGestureRecognizer) {
-        switch sender.direction {
-        case UISwipeGestureRecognizerDirection.up:
-            // Take the card at the current index
-            // and process the swipe up only if it occurs below it
-//            var temIndex = index
-//            if temIndex >= collectionView!.numberOfItemsInSection(0) {
-//                temIndex--
-//            }
-//            let currentCard = collectionView!.cellForItemAtIndexPath(NSIndexPath(forItem: temIndex , inSection: 0))!
-//            let point = sender.locationInView(collectionView)
-//            if (point.y > CGRectGetMaxY(currentCard.frame) && index > 0) {
-            if index > 0 {
-                index -= 1
+        switch sender.state {
+        case .began:
+            break
+        case .failed:
+            print("state Failed")
+            UIView.setAnimationsEnabled(false)
+            collectionView!.reloadItems(at: [self.draggedCellPath!])
+            UIView.setAnimationsEnabled(true)
+            break
+        case .cancelled:
+            print("state Cancelled")
+            UIView.setAnimationsEnabled(false)
+            collectionView!.reloadItems(at: [self.draggedCellPath!])
+            UIView.setAnimationsEnabled(true)
+            break
+        case .changed:
+            print("state Changed")
+            break
+        case .ended:
+            print("state Ended")
+            switch sender.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                // Take the card at the current index
+                // and process the swipe up only if it occurs below it
+                //                var temIndex = index
+                //                if temIndex >= collectionView!.numberOfItems(inSection: 0) {
+                //                    temIndex -= 1
+                //                }
+                //                let currentCard = collectionView!.cellForItem(at: IndexPath(item: temIndex, section: 0))!
+                //                let point = sender.location(in: collectionView)
+                //                if (point.y > currentCard.frame.maxY && index > 0) {
+                if index > 0 {
+                    index -= 1
+                }
+            //                }
+            case UISwipeGestureRecognizerDirection.left:
+                if index + 1 < collectionView!.numberOfItems(inSection: 0) {
+                    index += 1
+                }
+            default:
+                break
             }
-//            }
-        case UISwipeGestureRecognizerDirection.down:
-            if index + 1 < collectionView!.numberOfItems(inSection: 0) {
-                index += 1
-            }
-        default:
+            break
+        case .possible:
+            print("state Possible")
             break
         }
+        
+        
     }
     
     @objc internal func handlePan(_ sender: UIPanGestureRecognizer) {
         if (sender.state == .began) {
+            //            direction = PanDirection.undefined
+            //            if (direction == PanDirection.undefined) {
+            //
+            //                let velocity = sender.velocity(in: sender.view)
+            //
+            //                let isVerticalGesture = fabs(velocity.y) > fabs(velocity.x);
+            //
+            //                if isVerticalGesture{
+            //                    if (velocity.y > 0) {
+            //                        direction = PanDirection.down;
+            //                    } else {
+            //                        direction = PanDirection.up;
+            //                    }
+            //                }
+            //
+            //                else {
+            //                    if  velocity.x > 0 {
+            //                        direction = PanDirection.right;
+            //                    } else {
+            //                        direction = PanDirection.left;
+            //                    }
+            //                }
+            //            }
             let initialPanPoint = sender.location(in: collectionView)
             findDraggingCellByCoordinate(initialPanPoint)
         } else if (sender.state == .changed) {
+            print("Pan Changed")
+            //            let velocity = sender.velocity(in: sender.view)
+            //
+            //            let isVerticalGesture = fabs(velocity.y) > fabs(velocity.x);
+            //
+            //            if isVerticalGesture{
+            //                if (velocity.y > 0) {
+            //                    direction = PanDirection.down;
+            //                } else {
+            //                    direction = PanDirection.up;
+            //                }
+            //            }
+            //
+            //            else {
+            //                if  velocity.x > 0 {
+            //                    direction = PanDirection.right;
+            //                } else {
+            //                    direction = PanDirection.left;
+            //                }
+            //            }
+            //            if direction == PanDirection.left || direction == PanDirection.right{
             let newCenter = sender.translation(in: collectionView!)
             updateCenterPositionOfDraggingCell(newCenter)
+            //            }
+            //            else{
+            //                if index != 0{
+            //                    UIView.setAnimationsEnabled(false)
+            //                    collectionView!.reloadItems(at: [self.draggedCellPath!])
+            //                    UIView.setAnimationsEnabled(true)
+            //                }
+            //            }
         } else {
+            print("Pan Ended")
             if let indexPath = draggedCellPath {
                 finishedDragging(collectionView!.cellForItem(at: indexPath)!)
             }
@@ -304,24 +399,35 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     fileprivate func updateCenterPositionOfDraggingCell(_ touchCoordinate:CGPoint) {
         if let strongDraggedCellPath = draggedCellPath {
             if let cell = collectionView?.cellForItem(at: strongDraggedCellPath) {
-                let newCenterX = (initialCellCenter!.x + touchCoordinate.x)
-                let newCenterY =  (initialCellCenter!.y + touchCoordinate.y)
+                var newCenterX = initialCellCenter!.x
+                if(touchCoordinate.x < 0){
+                    newCenterX += touchCoordinate.x
+                }
+                let newCenterY = (initialCellCenter!.y)
                 cell.center = CGPoint(x: newCenterX, y: newCenterY)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(storeAngleOfRotation()))
+                
+                //                cell.transform = CGAffineTransform(rotationAngle: CGFloat(storeAngleOfRotation()))
             }
         }
     }
     
     fileprivate func finishedDragging(_ cell: UICollectionViewCell) {
         let deltaX = abs(cell.center.x - initialCellCenter!.x)
-        let deltaY = abs(cell.center.y - initialCellCenter!.y)
-        let shouldSnapBack = (deltaX < minimumXPanDistanceToSwipe && deltaY < minimumYPanDistanceToSwipe)
+        //        let deltaY = abs(cell.center.y - initialCellCenter!.y)
+        let shouldSnapBack = (deltaX < minimumXPanDistanceToSwipe || cell.center.x > initialCellCenter!.x)
         if shouldSnapBack {
-            UIView.setAnimationsEnabled(false)
-            collectionView!.reloadItems(at: [self.draggedCellPath!])
-            UIView.setAnimationsEnabled(true)
+            UIView.animate(withDuration: 0.4, animations: {
+                cell.center = self.initialCellCenter!
+            }) { (true) in
+                //                UIView.setAnimationsEnabled(false)
+                //                self.collectionView?.scrollToItem(at: self.draggedCellPath!, at: .centeredHorizontally, animated: false)
+                //                self.collectionView!.reloadItems(at: [self.draggedCellPath!])
+                //                UIView.setAnimationsEnabled(true)
+                //                self.collectionView?.bringSubview(toFront: cell)
+            }
+            
         } else {
-            _ = storeAngleOfRotation()
+            //            _ = storeAngleOfRotation()
             if draggedCellPath?.item == index {
                 index += 1
             } else {
@@ -360,7 +466,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     func cardDidRemoved(_ index: Int) {
         collectionView?.performBatchUpdates({ [weak self] () in
             self?.collectionView?.deleteItems(at: [IndexPath(item: index, section: 0)])
-        }, completion: { _ in })
+            }, completion: { _ in })
     }
     
     //MARK: - UIGestureRecognizerDelegate
@@ -369,7 +475,13 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
         var result = true
         if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
             let velocity = panGesture.velocity(in: collectionView)
-            result = abs(Int(velocity.y)) < 250
+            
+            print(velocity)
+            if velocity.x < 0{
+                result = true
+            } else{
+                result = false
+            }
         }
         return result
     }
