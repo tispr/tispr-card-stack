@@ -1,6 +1,6 @@
 Swipable, customizable card stack view, Tinder like card stack view based on UICollectionView. Cards UI
 
-<video src="./tsprHorizontal.mov" width="400" alt="Swipable, customizable card stack view, Tinder like card stack view based on UICollectionView" />
+<img src="./tsprHorizontal.gif" width="400" alt="Swipable, customizable card stack view, Tinder like card stack view based on UICollectionView" />
 
 
 Сocoapods installation
