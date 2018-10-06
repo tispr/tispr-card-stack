@@ -1,18 +1,18 @@
 /*
-Copyright 2015 BuddyHopp, Inc.
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-*/
+ Copyright 2015 BuddyHopp, Inc.
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
 
 //
 //  TisprCardStackDemoViewController.swift
@@ -31,16 +31,16 @@ class TisprCardStackDemoViewController: CardStackViewController {
         static let animationSpeed: Float = 0.86
         static let padding: CGFloat = 20.0
         static let kHeight: CGFloat = 0.67
-        static let topStackVisibleCardCount = 40
-        static let bottomStackVisibleCardCount = 30
+        static let topStackVisibleCardCount = 3
+        static let bottomStackVisibleCardCount = 1
         static let bottomStackCardHeight: CGFloat = 45.0
         static let colors = [UIColor(red: 45.0/255.0, green: 62.0/255.0, blue: 79.0/255.0, alpha: 1.0),
-                              UIColor(red: 48.0/255.0, green: 173.0/255.0, blue: 99.0/255.0, alpha: 1.0),
-                              UIColor(red: 141.0/255.0, green: 72.0/255.0, blue: 171.0/255.0, alpha: 1.0),
-                              UIColor(red: 241.0/255.0, green: 155.0/255.0, blue: 44.0/255.0, alpha: 1.0),
-                              UIColor(red: 234.0/255.0, green: 78.0/255.0, blue: 131.0/255.0, alpha: 1.0),
-                              UIColor(red: 80.0/255.0, green: 170.0/255.0, blue: 241.0/255.0, alpha: 1.0)]
-
+                             UIColor(red: 48.0/255.0, green: 173.0/255.0, blue: 99.0/255.0, alpha: 1.0),
+                             UIColor(red: 141.0/255.0, green: 72.0/255.0, blue: 171.0/255.0, alpha: 1.0),
+                             UIColor(red: 241.0/255.0, green: 155.0/255.0, blue: 44.0/255.0, alpha: 1.0),
+                             UIColor(red: 234.0/255.0, green: 78.0/255.0, blue: 131.0/255.0, alpha: 1.0),
+                             UIColor(red: 80.0/255.0, green: 170.0/255.0, blue: 241.0/255.0, alpha: 1.0)]
+        
     }
     
     fileprivate var countOfCards: Int = 6
@@ -49,7 +49,7 @@ class TisprCardStackDemoViewController: CardStackViewController {
         super.viewDidLoad()
         
         //set size of cards
-        let size = CGSize(width: view.bounds.width - 2 * Constants.padding, height: Constants.kHeight * view.bounds.height)
+        let size = CGSize(width: view.bounds.width - 3 * Constants.padding, height: Constants.kHeight * view.bounds.height)
         setCardSize(size)
         
         delegate = self
@@ -58,6 +58,7 @@ class TisprCardStackDemoViewController: CardStackViewController {
         layout.topStackMaximumSize = Constants.topStackVisibleCardCount
         layout.bottomStackMaximumSize = Constants.bottomStackVisibleCardCount
         layout.bottomStackCardHeight = Constants.bottomStackCardHeight
+        layout.collectionView?.removeGestureRecognizer((layout.collectionView?.panGestureRecognizer)!)
     }
     
     //method to add new card
@@ -65,7 +66,7 @@ class TisprCardStackDemoViewController: CardStackViewController {
         countOfCards += 1
         newCardAdded()
     }
-
+    
     
     @IBAction func moveUP(_ sender: AnyObject) {
         moveCardUp()
@@ -74,12 +75,12 @@ class TisprCardStackDemoViewController: CardStackViewController {
     @IBAction func moveCardDown(_ sender: AnyObject) {
         moveCardDown()
     }
-
+    
     @IBAction func deleteAction(_ sender: AnyObject) {
         countOfCards -= 1
         deleteCard()
     }
-
+    
 }
 
 extension TisprCardStackDemoViewController : CardStackDatasource {

@@ -219,8 +219,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
         let yPosition = (collectionView!.frame.size.height - cardSize.height)/2
         //5s 3.9
         //6plus 4.2
-        //8plus 4.4
-        let xPosition = -(4.4 * collectionView!.frame.size.width)/5
+        let xPosition = -(4.2 * collectionView!.frame.size.width)/5
         
         let frame = CGRect(x: xPosition, y: CGFloat(yPosition), width: cardSize.width, height: cardSize.height)
         attributes.frame = frame
