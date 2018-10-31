@@ -23,7 +23,7 @@
 
 import TisprCardStack
 
-class TisprCardStackDemoViewController: CardStackViewController {
+class TisprCardStackHorizontalViewController: CardStackHorizontalViewController {
     
     
     private struct Constants {
@@ -87,13 +87,13 @@ class TisprCardStackDemoViewController: CardStackViewController {
     
 }
 
-extension TisprCardStackDemoViewController : CardStackDatasource {
-    func numberOfCards(in cardStack: CardStackView) -> Int {
+extension TisprCardStackHorizontalViewController : CardStackHorizontalDatasource {
+    func numberOfCards(in cardStack: CardStackHorizontalView) -> Int {
         return countOfCards
     }
     
-    func card(_ cardStack: CardStackView, cardForItemAtIndex index: IndexPath) -> CardStackViewCell {
-        let cell = cardStack.dequeueReusableCell(withReuseIdentifier: Constants.cellIndentifier, for: index) as! TisprCardStackDemoViewCell
+    func card(_ cardStack: CardStackHorizontalView, cardForItemAtIndex index: IndexPath) -> CardStackHorizontalViewCell {
+        let cell = cardStack.dequeueReusableCell(withReuseIdentifier: Constants.cellIndentifier, for: index) as! TisprCardStackHorizontalViewCell
         cell.backgroundColor = Constants.colors[index.item % Constants.colors.count]
         cell.text.text = "№ \(index.item)"
         return cell
@@ -104,7 +104,7 @@ extension TisprCardStackDemoViewController : CardStackDatasource {
 
 
 
-extension TisprCardStackDemoViewController: CardStackDelegate {
+extension TisprCardStackHorizontalViewController: CardStackHorizontalDelegate {
     func cardDidChangeState(_ cardIndex: Int) {
         // Method to observe card postion changes
     }
