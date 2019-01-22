@@ -32,7 +32,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
             guard let cell = collectionView!.cellForItem(at: draggedCellPath!) else {
                 return
             }
-            collectionView?.bringSubview(toFront: cell)
+            collectionView?.bringSubviewToFront(cell)
 
             collectionView?.performBatchUpdates({ [weak self] in
                 self?.invalidateLayout()
@@ -87,13 +87,13 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
                 panGestureRecognizer!.delegate = self
                 
                 swipeRecognizerDown = UISwipeGestureRecognizer(target: self, action:  #selector(CardStackViewLayout.handleSwipe(_:)))
-                swipeRecognizerDown!.direction = UISwipeGestureRecognizerDirection.down
+                swipeRecognizerDown!.direction = UISwipeGestureRecognizer.Direction.down
                 swipeRecognizerDown!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerDown!)
                 swipeRecognizerDown!.require(toFail: panGestureRecognizer!)
                 
                 swipeRecognizerUp = UISwipeGestureRecognizer(target: self, action:  #selector(CardStackViewLayout.handleSwipe(_:)))
-                swipeRecognizerUp!.direction = UISwipeGestureRecognizerDirection.up
+                swipeRecognizerUp!.direction = UISwipeGestureRecognizer.Direction.up
                 swipeRecognizerUp!.delegate = self
                 collectionView?.addGestureRecognizer(swipeRecognizerUp!)
                 swipeRecognizerUp!.require(toFail: panGestureRecognizer!)
@@ -137,7 +137,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     // MARK: - Providing Layout Attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let indexPaths = indexPathsForElementsInRect(rect)
-        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.flatMap{ $0 }
+        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.compactMap{ $0 }
         return layoutAttributes
     }
     
@@ -242,7 +242,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     
     @objc internal func handleSwipe(_ sender: UISwipeGestureRecognizer) {
         switch sender.direction {
-        case UISwipeGestureRecognizerDirection.up:
+        case UISwipeGestureRecognizer.Direction.up:
             // Take the card at the current index
             // and process the swipe up only if it occurs below it
 //            var temIndex = index
@@ -256,7 +256,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
                 index -= 1
             }
 //            }
-        case UISwipeGestureRecognizerDirection.down:
+        case UISwipeGestureRecognizer.Direction.down:
             if index + 1 < collectionView!.numberOfItems(inSection: 0) {
                 index += 1
             }
@@ -295,7 +295,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
             
             //workaround for fix issue with zIndex
             let cell = collectionView!.cellForItem(at: draggedCellPath!)
-            collectionView?.bringSubview(toFront: cell!)
+            collectionView?.bringSubviewToFront(cell!)
             
         }
     }
