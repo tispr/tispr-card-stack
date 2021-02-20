@@ -81,10 +81,10 @@ func newCardWasAdded()
 
 For more detail, see the sample project.
 
-Contact
+Contact owner
 -------
 
-andrei.pitsko@tispr.com, andrei.pitsko@gmail.com
+[Indy](https://weareindy.com)
 
 License
 -------
