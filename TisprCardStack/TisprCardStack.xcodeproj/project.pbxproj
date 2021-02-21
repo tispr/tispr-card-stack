@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FB897CF218987E6004F47C8 /* TisprHorizontalStackViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB897CE218987E5004F47C8 /* TisprHorizontalStackViewLayout.swift */; };
+		3FB897D121898904004F47C8 /* CardStackHorizontalViewCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB897D021898904004F47C8 /* CardStackHorizontalViewCotroller.swift */; };
 		8850ED7A1B543CD7007333D6 /* TisprCardStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 8850ED751B543CD7007333D6 /* TisprCardStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8850ED7C1B543CD7007333D6 /* CardStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED771B543CD7007333D6 /* CardStackViewController.swift */; };
 		8850ED7D1B543CD7007333D6 /* TisprCardStackViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8850ED781B543CD7007333D6 /* TisprCardStackViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3FB897CE218987E5004F47C8 /* TisprHorizontalStackViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TisprHorizontalStackViewLayout.swift; sourceTree = "<group>"; };
+		3FB897D021898904004F47C8 /* CardStackHorizontalViewCotroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackHorizontalViewCotroller.swift; sourceTree = "<group>"; };
 		8850ED741B543CD7007333D6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8850ED751B543CD7007333D6 /* TisprCardStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TisprCardStack.h; sourceTree = "<group>"; };
 		8850ED771B543CD7007333D6 /* CardStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +42,8 @@
 				8850ED751B543CD7007333D6 /* TisprCardStack.h */,
 				8850ED771B543CD7007333D6 /* CardStackViewController.swift */,
 				8850ED781B543CD7007333D6 /* TisprCardStackViewLayout.swift */,
+				3FB897CE218987E5004F47C8 /* TisprHorizontalStackViewLayout.swift */,
+				3FB897D021898904004F47C8 /* CardStackHorizontalViewCotroller.swift */,
 			);
 			path = TisprCardStack;
 			sourceTree = "<group>";
@@ -98,7 +104,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "BuddyHopp Inc.";
 				TargetAttributes = {
 					88E6A2D91B4D93F300912452 = {
@@ -139,7 +145,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB897D121898904004F47C8 /* CardStackHorizontalViewCotroller.swift in Sources */,
 				8850ED7C1B543CD7007333D6 /* CardStackViewController.swift in Sources */,
+				3FB897CF218987E6004F47C8 /* TisprHorizontalStackViewLayout.swift in Sources */,
 				8850ED7D1B543CD7007333D6 /* TisprCardStackViewLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -159,12 +167,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -216,12 +226,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

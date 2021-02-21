@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qtK-Vs-bQo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qtK-Vs-bQo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,12 +19,61 @@
                         <color key="backgroundColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="dNJ-yq-xIk" kind="relationship" relationship="rootViewController" id="Zuc-D7-JVK"/>
+                        <segue destination="u72-3l-G28" kind="relationship" relationship="rootViewController" id="Jci-nG-Hyy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TZz-kD-CWr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-585" y="446"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Zzn-sD-yf4">
+            <objects>
+                <viewController id="u72-3l-G28" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cpj-3A-ltM"/>
+                        <viewControllerLayoutGuide type="bottom" id="5ed-FA-8hw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jFH-pp-16t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pF-no-QXN">
+                                <rect key="frame" x="32" y="230" width="311" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ayn-Xs-OL3"/>
+                                </constraints>
+                                <state key="normal" title="Vertical"/>
+                                <connections>
+                                    <segue destination="dNJ-yq-xIk" kind="show" id="Zmt-c1-OA7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D84-Yx-d0u">
+                                <rect key="frame" x="32" y="334" width="311" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="jfc-WC-duZ"/>
+                                </constraints>
+                                <state key="normal" title="Horizontal"/>
+                                <connections>
+                                    <segue destination="ZK0-gI-EzM" kind="show" id="fWf-BU-89b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2pF-no-QXN" secondAttribute="trailing" constant="16" id="ACl-Qs-DNQ"/>
+                            <constraint firstItem="D84-Yx-d0u" firstAttribute="centerY" secondItem="jFH-pp-16t" secondAttribute="centerY" constant="20.5" id="Quh-MH-Tpk"/>
+                            <constraint firstItem="2pF-no-QXN" firstAttribute="leading" secondItem="jFH-pp-16t" secondAttribute="leadingMargin" constant="16" id="SK1-iq-83X"/>
+                            <constraint firstItem="2pF-no-QXN" firstAttribute="centerY" secondItem="jFH-pp-16t" secondAttribute="centerY" constant="-83.5" id="ZEt-Bb-oCu"/>
+                            <constraint firstItem="D84-Yx-d0u" firstAttribute="leading" secondItem="jFH-pp-16t" secondAttribute="leadingMargin" constant="16" id="g9W-C6-TbV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D84-Yx-d0u" secondAttribute="trailing" constant="16" id="rCF-aH-po9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Bvc-AK-980"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sFT-43-iMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79" y="446"/>
         </scene>
         <!--Tispr Card Stack Demo View Controller-->
         <scene sceneID="Sb1-rj-0Ty">
@@ -53,7 +101,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qPI-Y1-54q">
-                                            <rect key="frame" x="116.5" y="20" width="48" height="24"/>
+                                            <rect key="frame" x="116" y="20" width="48" height="24"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -82,11 +130,18 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="4PD-kr-wHl">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="trash" id="AZL-jR-Hgz">
-                            <connections>
-                                <action selector="deleteAction:" destination="dNJ-yq-xIk" id="JcZ-pW-CVp"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="cancel" id="3s0-O5-k7R">
+                                <connections>
+                                    <action selector="cancelAction:" destination="dNJ-yq-xIk" id="EjR-Gn-JaN"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="AZL-jR-Hgz">
+                                <connections>
+                                    <action selector="deleteAction:" destination="dNJ-yq-xIk" id="JcZ-pW-CVp"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <rightBarButtonItems>
                             <barButtonItem image="arrow_down" id="jRK-fe-Wro">
                                 <connections>
@@ -109,12 +164,103 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mW3-jp-k3y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="133" y="446"/>
+            <point key="canvasLocation" x="1113" y="-238"/>
+        </scene>
+        <!--Tispr Card Stack Horizontal View Controller-->
+        <scene sceneID="X6m-7s-Vwk">
+            <objects>
+                <collectionViewController automaticallyAdjustsScrollViewInsets="NO" id="ZK0-gI-EzM" customClass="TisprCardStackHorizontalViewController" customModule="TisprCardStackExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ORd-Td-ScA" customClass="CardStackView" customModule="TisprCardStack">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewLayout key="collectionViewLayout" id="weh-sB-oDi" customClass="TisprHorizontalStackViewLayout" customModule="TisprCardStack"/>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="TisprCardStackDemoViewCellIdentifier" id="Vmy-Yb-HgC" customClass="TisprCardStackHorizontalViewCell" customModule="TisprCardStackExample" customModuleProvider="target">
+                                <rect key="frame" x="47.5" y="0.0" width="280" height="380"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1IP-x5-SgZ" userLabel="Vote Smile">
+                                            <rect key="frame" x="21" y="15" width="238" height="238"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="238" id="EMY-Pl-ONa"/>
+                                                <constraint firstAttribute="height" constant="238" id="mIv-do-MhJ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cg5-cS-j1c">
+                                            <rect key="frame" x="116" y="20" width="48" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Cg5-cS-j1c" firstAttribute="top" secondItem="Vmy-Yb-HgC" secondAttribute="top" constant="20" id="1AN-bG-yQk"/>
+                                    <constraint firstAttribute="centerX" secondItem="Cg5-cS-j1c" secondAttribute="centerX" id="I8m-6K-N72"/>
+                                    <constraint firstAttribute="centerX" secondItem="1IP-x5-SgZ" secondAttribute="centerX" id="del-uF-BQE"/>
+                                    <constraint firstAttribute="centerY" secondItem="1IP-x5-SgZ" secondAttribute="centerY" constant="-0.5" id="grp-Q2-By2"/>
+                                </constraints>
+                                <size key="customSize" width="280" height="380"/>
+                                <connections>
+                                    <outlet property="text" destination="Cg5-cS-j1c" id="biq-YI-PnU"/>
+                                    <outlet property="voteSmile" destination="1IP-x5-SgZ" id="xaY-Zq-DWe"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="ZK0-gI-EzM" id="baR-3y-2hj"/>
+                            <outlet property="delegate" destination="ZK0-gI-EzM" id="nYC-vA-i3O"/>
+                        </connections>
+                    </collectionView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="0my-WQ-pIt">
+                        <nil key="title"/>
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="cancel" id="cTf-Iz-Lmn">
+                                <connections>
+                                    <action selector="cancelAction:" destination="ZK0-gI-EzM" id="C1X-Bg-Wf5"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="trash" id="vL0-tD-l4Q">
+                                <connections>
+                                    <action selector="deleteAction:" destination="ZK0-gI-EzM" id="jVn-BV-3Zt"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem image="arrow_down" id="UeF-hO-NkC">
+                                <connections>
+                                    <action selector="moveCardDown:" destination="ZK0-gI-EzM" id="UHw-tw-dPq"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="arrow_up" id="D3e-eU-CSG">
+                                <connections>
+                                    <action selector="moveUP:" destination="ZK0-gI-EzM" id="1PA-Gp-lXy"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icon_plus" id="MZk-3T-7T3">
+                                <connections>
+                                    <action selector="addNewCards:" destination="ZK0-gI-EzM" id="ts3-6m-0BZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1B3-uX-t14" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1172" y="761"/>
         </scene>
     </scenes>
     <resources>
-        <image name="arrow_down" width="25" height="25"/>
-        <image name="arrow_up" width="25" height="25"/>
-        <image name="icon_plus" width="25" height="25"/>
+        <image name="arrow_down" width="38.297870635986328" height="38.297870635986328"/>
+        <image name="arrow_up" width="38.297870635986328" height="38.297870635986328"/>
+        <image name="icon_plus" width="40" height="40"/>
     </resources>
 </document>

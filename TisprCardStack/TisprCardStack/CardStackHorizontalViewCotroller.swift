@@ -22,20 +22,20 @@
 
 import UIKit
 
-public typealias CardStackView = UICollectionView
-public typealias CardStackViewCell = UICollectionViewCell
+public typealias CardStackHorizontalView = UICollectionView
+public typealias CardStackHorizontalViewCell = UICollectionViewCell
 
-public protocol CardStackDelegate  {
+public protocol CardStackHorizontalDelegate {
     func cardDidChangeState(_ cardIndex: Int)
 }
 
-public protocol CardStackDatasource  {
-    func numberOfCards(in cardStack: CardStackView) -> Int
-    func card(_ cardStack: CardStackView, cardForItemAtIndex index: IndexPath) -> CardStackViewCell
+public protocol CardStackHorizontalDatasource {
+    func numberOfCards(in cardStack: CardStackHorizontalView) -> Int
+    func card(_ cardStack: CardStackHorizontalView, cardForItemAtIndex index: IndexPath) -> CardStackHorizontalViewCell
 }
 
 
-open class CardStackViewController: UICollectionViewController, UIGestureRecognizerDelegate {
+open class CardStackHorizontalViewController: UICollectionViewController, UIGestureRecognizerDelegate {
     
     private struct Constants {
         static let cardsPadding: CGFloat = 20
@@ -43,15 +43,15 @@ open class CardStackViewController: UICollectionViewController, UIGestureRecogni
         
     }
     
-    open var delegate: CardStackDelegate? {
+    open var delegate: CardStackHorizontalDelegate? {
         didSet {
             layout.delegate = delegate
         }
     }
     
-    open var datasource: CardStackDatasource?
+    open var datasource: CardStackHorizontalDatasource?
     
-    open var layout: CardStackViewLayout { return collectionViewLayout as! CardStackViewLayout }
+    open var layout: TisprHorizontalStackViewLayout { return collectionViewLayout as! TisprHorizontalStackViewLayout }
     
     override open func viewDidLoad() {
         super.viewDidLoad()
