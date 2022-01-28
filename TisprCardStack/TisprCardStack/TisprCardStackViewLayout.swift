@@ -29,19 +29,22 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
         didSet {
             //workaround for zIndex
             draggedCellPath = oldValue > index ? IndexPath(item: index, section: 0) : IndexPath(item: oldValue, section: 0)
-            guard let cell = collectionView!.cellForItem(at: draggedCellPath!) else {
+            
+            let currentIndexPath = draggedCellPath!
+            
+            guard let cell = collectionView!.cellForItem(at: currentIndexPath) else {
                 return
             }
             collectionView?.bringSubview(toFront: cell)
-
+            
             collectionView?.performBatchUpdates({ [weak self] in
                 self?.invalidateLayout()
             }, completion: { [weak self] _ in
                 guard let strongself = self else {
                     return
                 }
-
-                strongself.delegate?.cardDidChangeState(strongself.index)
+                
+                strongself.delegate?.cardDidChangeState(cell, atIndexPath: currentIndexPath, cardIndex: strongself.index)
             })
         }
     }
@@ -137,7 +140,7 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     // MARK: - Providing Layout Attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let indexPaths = indexPathsForElementsInRect(rect)
-        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.flatMap{ $0 }
+        let layoutAttributes = indexPaths.map { self.layoutAttributesForItem(at: $0) }.compactMap{ $0 }
         return layoutAttributes
     }
     
@@ -255,10 +258,30 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
             if index > 0 {
                 index -= 1
             }
+            
+            var currentCard: UICollectionViewCell? = nil
+            let currentIndexPath = draggedCellPath
+            
+            if let indexPath = currentIndexPath {
+                currentCard = collectionView!.cellForItem(at: indexPath)
+            }
+            if currentCard != nil && currentIndexPath != nil {
+                delegate?.cardDidMovedToTop(currentCard!, atIndexPath: currentIndexPath!)
+            }
 //            }
         case UISwipeGestureRecognizerDirection.down:
             if index + 1 < collectionView!.numberOfItems(inSection: 0) {
                 index += 1
+            }
+            
+            var currentCard: UICollectionViewCell? = nil
+            let currentIndexPath = draggedCellPath
+            
+            if let indexPath = currentIndexPath {
+                currentCard = collectionView!.cellForItem(at: indexPath)
+            }
+            if currentCard != nil && currentIndexPath != nil {
+                delegate?.cardDidMovedToBottom(currentCard!, atIndexPath: currentIndexPath!)
             }
         default:
             break
@@ -313,6 +336,14 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
     }
     
     fileprivate func finishedDragging(_ cell: UICollectionViewCell) {
+        
+        var currentCard: UICollectionViewCell? = nil
+        let currentIndexPath = draggedCellPath
+        
+        if let indexPath = currentIndexPath {
+            currentCard = collectionView!.cellForItem(at: indexPath)
+        }
+        
         let deltaX = abs(cell.center.x - initialCellCenter!.x)
         let deltaY = abs(cell.center.y - initialCellCenter!.y)
         let shouldSnapBack = (deltaX < minimumXPanDistanceToSwipe && deltaY < minimumYPanDistanceToSwipe)
@@ -324,8 +355,16 @@ open class CardStackViewLayout: UICollectionViewLayout, UIGestureRecognizerDeleg
             _ = storeAngleOfRotation()
             if draggedCellPath?.item == index {
                 index += 1
+                
+                if currentCard != nil && currentIndexPath != nil {
+                    delegate?.cardDidMovedToBottom(currentCard!, atIndexPath: currentIndexPath!)
+                }
             } else {
                 index -= 1
+                
+                if currentCard != nil && currentIndexPath != nil {
+                    delegate?.cardDidMovedToTop(currentCard!, atIndexPath: currentIndexPath!)
+                }
             }
             initialCellCenter = .zero
             draggedCellPath = nil

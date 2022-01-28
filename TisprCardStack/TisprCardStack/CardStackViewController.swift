@@ -26,7 +26,9 @@ public typealias CardStackView = UICollectionView
 public typealias CardStackViewCell = UICollectionViewCell
 
 public protocol CardStackDelegate  {
-    func cardDidChangeState(_ cardIndex: Int)
+    func cardDidChangeState(_ cell: CardStackViewCell, atIndexPath indexPath: IndexPath, cardIndex: Int)
+    func cardDidMovedToBottom(_ cell: CardStackViewCell, atIndexPath indexPath: IndexPath)
+    func cardDidMovedToTop(_ cell: CardStackViewCell, atIndexPath indexPath: IndexPath)
 }
 
 public protocol CardStackDatasource  {
