@@ -97,7 +97,15 @@ extension TisprCardStackDemoViewController : CardStackDatasource {
 }
 
 extension TisprCardStackDemoViewController: CardStackDelegate {
-    func cardDidChangeState(_ cardIndex: Int) {
+    func cardDidChangeState(_ cell: CardStackViewCell, atIndexPath indexPath: IndexPath, cardIndex: Int) {
         // Method to observe card postion changes
+    }
+    
+    func cardDidMovedToBottom(_ cell: CardStackViewCell, atIndexPath indexPath: IndexPath) {
+        // Method to check when a card is moved to bottom
+    }
+    
+    func cardDidMovedToTop(_ cell: CardStackViewCell, atIndexPath indexPath: IndexPath) {
+        // Method to check when a card is moved to top
     }
 }
